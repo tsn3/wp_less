@@ -1,4 +1,4 @@
-<?php get_header(); ?>
+<?php get_header('404'); ?>
 
     <h1>404.php</h1>
 

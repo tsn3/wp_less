@@ -1,5 +1,10 @@
 <?php get_header(); ?>
-
+<?php
+//
+//var_dump(is_single());
+//WP_Query('category[]=cat-a&category[]=cat-b')
+?>
+<?php the_post(); ?>
     <!--================Blog Area =================-->
     <section class="blog_area single-post-area section_gap">
         <div class="container">
@@ -8,22 +13,20 @@
                     <div class="single-post row">
                         <div class="col-lg-12">
                             <div class="feature-img">
-                                <img class="img-fluid" src="img/blog/feature-img1.jpg" alt="">
+                                <img class="img-fluid" src="<?php echo get_the_post_thumbnail_url( get_the_ID(), 'post_image' );?>" alt="">
                             </div>
                         </div>
                         <div class="col-lg-3  col-md-3">
                             <div class="blog_info text-right">
                                 <div class="post_tag">
-                                    <a href="#">Food,</a>
-                                    <a class="active" href="#">Technology,</a>
-                                    <a href="#">Politics,</a>
-                                    <a href="#">Lifestyle</a>
+                                    <?php
+                                        foreach( get_the_category() as $category ) {
+                                            echo '<a href="' . get_category_link($category->term_id ) . '">' . $category->name . '</a>&nbsp;';
+                                        }
+                                    ?>
                                 </div>
                                 <ul class="blog_meta list">
-                                    <li><a href="#">Mark wiens<i class="lnr lnr-user"></i></a></li>
-                                    <li><a href="#">12 Dec, 2018<i class="lnr lnr-calendar-full"></i></a></li>
-                                    <li><a href="#">1.2M Views<i class="lnr lnr-eye"></i></a></li>
-                                    <li><a href="#">06 Comments<i class="lnr lnr-bubble"></i></a></li>
+                                    <?php do_action('block_meta'); ?>
                                 </ul>
                                 <ul class="social-links">
                                     <li><a href="#"><i class="fa fa-facebook"></i></a></li>

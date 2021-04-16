@@ -1,11 +1,13 @@
 <div class="blog_right_sidebar">
     <aside class="single_sidebar_widget search_widget">
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search Posts" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Posts'">
-            <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button"><i class="lnr lnr-magnifier"></i></button>
-                                </span>
-        </div><!-- /input-group -->
+            <form action="<?php echo home_url(); ?>" method="GET">
+                <input name="s" type="text" class="form-control" placeholder="<?php _e("Search Posts", 'artjoker'); ?>" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Posts'">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button"><i class="lnr lnr-magnifier"></i></button>
+                </span>
+            </form>
+        </div>
         <div class="br"></div>
     </aside>
     <aside class="single_sidebar_widget author_widget">

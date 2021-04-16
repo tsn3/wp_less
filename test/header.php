@@ -1,19 +1,14 @@
 <!DOCTYPE html>
-<html lang="zxx" class="no-js">
+<html <?php language_attributes(); ?>>
 
 <head>
+    <base href="<?php echo home_url(); ?>" />
+    <meta charset="<?php bloginfo( 'charset' ); ?>" />
     <!-- Mobile Specific Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Favicon-->
     <link rel="shortcut icon" href="img/fav.png">
-    <!-- Author Meta -->
-    <meta name="author" content="CodePixar">
-    <!-- Meta Description -->
-    <meta name="description" content="">
-    <!-- Meta Keyword -->
-    <meta name="keywords" content="">
-    <!-- meta character set -->
-    <meta charset="UTF-8">
+
     <!-- Site Title -->
     <!--
 			CSS
@@ -32,7 +27,7 @@
     <?php wp_head(); ?>
 </head>
 
-<body>
+<body <?php body_class(); ?>>
 
 <!-- Start Header Area -->
 <header class="header_area sticky-header">
@@ -40,7 +35,28 @@
         <nav class="navbar navbar-expand-lg navbar-light main_box">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
-                <a class="navbar-brand logo_h" href="index.html"><img src="img/logo.png" alt=""></a>
+
+                <?php
+                    $theme_dir = get_template_directory_uri().'/';
+                    $image_id = get_theme_mod( 'custom_logo' );
+                    if ($image_id) {
+                        $image_logo = wp_get_attachment_image_src($image_id, 'full');
+                        $image_logo = array_shift($image_logo);
+                    } else {
+                        $image_logo = $theme_dir . 'img/logo.png';
+                    }
+                ?>
+
+                <?php if (is_front_page()): ?>
+                    <span class="navbar-brand logo_h active">
+                        <img src="<?php echo $image_logo; ?>" alt="<?php bloginfo('description'); ?>">
+                    </span>
+                <?php else: ?>
+                    <a class="navbar-brand logo_h" href="<?php echo home_url();?>">
+                        <img src="<?php echo $image_logo; ?>" alt="<?php bloginfo('description'); ?>">
+                    </a>
+                <?php endif; ?>
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -98,12 +114,12 @@
     </div>
     <div class="search_input" id="search_input_box">
         <div class="container">
-            <form class="d-flex justify-content-between">
-                <input type="text" class="form-control" id="search_input" placeholder="Search Here">
+            <form class="d-flex justify-content-between" action="<?php echo home_url(); ?>" method="GET">
+                <input type="text" name="s" class="form-control" id="search_input" placeholder="Search Here" value="<?php echo get_search_query() ?>">
                 <button type="submit" class="btn"></button>
                 <span class="lnr lnr-cross" id="close_search" title="Close Search"></span>
             </form>
         </div>
-    </div>
+    </div> <!-- // div.container from header -->
 </header>
 <!-- End Header Area -->
