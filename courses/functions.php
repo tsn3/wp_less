@@ -3,6 +3,14 @@
 add_action('wp_enqueue_scripts', 'theme_stcripts');
 add_action( 'wp_enqueue_scripts', 'theme_name_scripts' );
 
+add_action( 'after_setup_theme', function() {
+
+	add_theme_support( 'custom-logo', array(
+		'height'      => 86,
+		'width'       => 300,
+	) );
+});
+
 function theme_name_scripts() {
 
 	wp_enqueue_style('style', '//fonts.googleapis.com/css?family=Montserrat:300,400,500%7CPlayfair+Display:700');
