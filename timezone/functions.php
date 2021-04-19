@@ -11,6 +11,41 @@ add_action( 'after_setup_theme', function() {
 	) );
 });
 
+add_action( 'after_setup_theme', function() {
+//    add_theme_support('title-tag');
+////    add_theme_support('custom-logo');
+//    add_theme_support('post-thumbnails');
+//    add_theme_support('woocommerce');
+//    add_theme_support('html5');
+//
+//    add_theme_support( 'custom-logo', array(
+//        'height'      => 50,
+//        'width'       => 137,
+//    ) );
+
+    register_nav_menus(array(
+            'primary-menu' => 'Главное меню',
+            'mobile-menu' => 'Мобильное меню',
+        )
+    );
+
+});
+
+
+class my_menu_class extends Walker_Nav_Menu {
+//    function start_lvl( &$output, $depth = 0, $args = null ) {
+//        $output = '';
+//    }
+//
+//    function start_el( &$output, $item, $depth = 0, $args = null, $id = 0 ) {
+//        $output = '';
+//    }
+//
+//    function end_el( &$output, $item, $depth = 0, $args = null, $id = 0 ) {
+//        $output = '';
+//    }
+}
+
 function theme_name_scripts() {
 //    wp_enqueue_style('styles', get_stylesheet_uri());
 

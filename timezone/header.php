@@ -17,7 +17,6 @@
         <div class="preloader-inner position-relative">
             <div class="preloader-circle"></div>
             <div class="preloader-img pere-text">
-
                 <img src="/wp-content/themes/timezone/assets/img/logo/logo.png" alt="">
             </div>
         </div>
@@ -54,6 +53,19 @@
                         <?php endif; ?>
                     </div>
                     <!-- Main-menu -->
+                    <div class="main-menu d-none d-lg-block">
+                        <?php wp_nav_menu( array(
+                            'theme_location' => 'primary-menu',
+                            'menu_class' => 'navigation',
+                            'depth' => 1,
+                            //                            'container'       => 'div',
+                            //                            'container_class' => 'collapse navbar-collapse offset',
+                            //                            'container_id'    => 'navbarSupportedContent',
+                            //                            'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+                            'walker' => new my_menu_class()
+                        ) ); ?>
+                    </div>
+
                     <div class="main-menu d-none d-lg-block">
                         <nav>
                             <ul id="navigation">
