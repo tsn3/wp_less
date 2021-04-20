@@ -25,9 +25,14 @@
 <!--    <link rel="stylesheet" href="--><?php //echo get_style_dir(); ?><!--/css/main.css">-->
 
     <?php wp_head(); ?>
+
+    <script>
+        let ajaxPath = '<?php echo admin_url('admin-ajax.php'); ?>';
+    </script>
 </head>
 
 <body <?php body_class(); ?>>
+<?php wp_body_open(); ?>
 
 <!-- Start Header Area -->
 <header class="header_area sticky-header">

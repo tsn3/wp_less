@@ -83,6 +83,10 @@
                             <hr><?php _e('Ничего не найденно.', 'artjoker')?><hr>
                         <?php endif; ?>
 
+                        <div id="my-custom-wrapper"></div>
+
+                        <div id="my-custom-id">Тыц</div>
+
                         <?php the_posts_pagination(array('screen_reader_text' => ' ' )); ?>
 <!--                        <nav class="blog-pagination justify-content-center d-flex">-->
 <!--                            <ul class="pagination">-->

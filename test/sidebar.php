@@ -20,10 +20,6 @@
 
         $jobs = new WP_Query($arg);
 
-
-//
-//        print_r($jobs);
-
         ?>
 
         <?php if ($jobs->have_posts()): ?>

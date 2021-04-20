@@ -1,18 +1,46 @@
 <?php
 
 //add_action( 'wp_ajax_my_action', 'my_action' );
-//if (!is_admin()) {
-//    add_action('pre_get_posts', 'pre_get_posts');
-//}
-//
-//function pre_get_posts($query) {
-//    if ($query->is_main_query()) {
-//        $query->set('posts_per_page', -1);
-//        $query->set('s', 'тест');
-//        $query->set('post_type', array('news', 'jobs'));
-//    }
-//}
+if (!is_admin()) {
+    add_action('pre_get_posts', 'pre_get_posts');
+}
 
+function pre_get_posts($query) {
+    if ($query->is_main_query() && $query->is_home()) {
+        $query->set('posts_per_page', 1);
+    }
+}
+
+add_action('admin_menu',
+    function() {
+        add_menu_page( 'Контакты', 'Контакты', 'manage_options', 'contact_page', 'get_contact_page' );
+        //add_submenu_page( 'inquires', 'Mail template', 'Mail template', 'manage_options', 'mail_template', 'get_mail_template' );
+    }
+);
+
+function get_contact_page() {
+    // Сохранение настроек
+    if ($_POST) {
+        update_option('test_phone', stripslashes($_POST['phone']));
+        echo '<div id="message" class="updated fade"><p><strong>Успешно сохраненно</strong></p></div>';
+    }
+
+    ?>
+	<div class="wrap">
+		<h2><?php echo get_admin_page_title() ?></h2>
+
+        <form method="post" novalidate="novalidate">
+            <label>Телефон
+                <input type="text" name="phone" value="<?php echo get_option('test_phone'); ?>">
+            </label>
+
+
+            <p class="submit">
+                <input type="submit" class="button button-primary button-large" value="Save" />
+            </p>
+        </form>
+    </div>
+<?php }
 
 add_action( 'after_setup_theme', function() {
     add_theme_support('title-tag');
@@ -33,6 +61,52 @@ add_action( 'after_setup_theme', function() {
     );
 
 });
+
+// Волшебный AJAX
+add_action( 'wp_ajax_contact', 'magicAjax' );
+add_action( 'wp_ajax_nopriv_contact', 'magicAjax' );
+//add_action( 'wp_ajax_{action}', 'magicAjax' );
+
+function magicAjax() {
+//    $status = wp_mail(get_option('admin_email'), __('Контакты'), print_r($_POST, 1));
+    $status = wp_mail('jekekej634@zevars.com', __('Контакты'), print_r($_POST, 1));
+
+    wp_send_json(array('status' => $status));
+}
+
+
+add_action( 'wp_ajax_needmore', 'magicAjax2' );
+add_action( 'wp_ajax_nopriv_needmore', 'magicAjax2' );
+
+function magicAjax2() {
+    $data = new WP_Query('post_type=post&posts_per_page=1&orderby=rand');
+
+    ob_start();
+    ?>
+
+    <?php if ($data->have_posts()): ?>
+        <?php while($data->have_posts()): ?>
+            <?php $data->the_post(); ?>
+            <?php get_template_part('content/post', get_post_type());?>
+        <?php endwhile; ?>
+    <?php else : ?>
+        <hr><?php _e('Ничего не найденно.', 'artjoker')?><hr>
+    <?php endif; ?>
+
+    <?php wp_reset_postdata(); ?>
+
+    <?php
+
+    $content = ob_get_contents();
+    ob_clean();
+
+    wp_send_json(
+        array(
+            'status' => 1,
+            'content' => $content
+        )
+    );
+}
 
 class my_menu_class extends Walker_Nav_Menu {
 //    function start_lvl( &$output, $depth = 0, $args = null ) {
@@ -183,7 +257,9 @@ add_image_size('post_image', 750, 350, 1);
 wp_enqueue_style( 'main', trailingslashit(get_template_directory_uri()) . 'css/main.css', array(), time());
 wp_enqueue_script('main', trailingslashit(get_template_directory_uri()) . 'js/main.js', array('jquery'), time(), 1);
 
-add_action('block_meta', function() {?>
+wp_enqueue_script('function', trailingslashit(get_template_directory_uri()) . 'js/function.js', array('jquery'), time(), 1);
+
+add_action('block_meta', function() { ?>
     <li><a href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>"><?php the_author(); ?><i class="lnr lnr-user"></i></a></li>
 <?php });
 
