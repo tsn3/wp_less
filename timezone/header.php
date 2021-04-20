@@ -1,9 +1,10 @@
 <!doctype html>
 <html class="no-js" <?php language_attributes(); ?>>
 <head>
+    <base href="<?php echo home_url(); ?>" />
     <meta charset="<?php bloginfo( 'charset' ); ?>" />
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Watch shop | eCommers</title>
+<!--    <title>Watch shop | eCommers</title>-->
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
@@ -17,7 +18,6 @@
         <div class="preloader-inner position-relative">
             <div class="preloader-circle"></div>
             <div class="preloader-img pere-text">
-                <img src="/wp-content/themes/timezone/assets/img/logo/logo.png" alt="">
             </div>
         </div>
     </div>
@@ -53,10 +53,12 @@
                         <?php endif; ?>
                     </div>
                     <!-- Main-menu -->
+
                     <div class="main-menu d-none d-lg-block">
                         <?php wp_nav_menu( array(
                             'theme_location' => 'primary-menu',
-                            'menu_class' => 'navigation',
+//                            'menu_class' => 'navigation',
+                            'menu_id'         => 'navigation',
                             'depth' => 1,
                             //                            'container'       => 'div',
                             //                            'container_class' => 'collapse navbar-collapse offset',
@@ -64,40 +66,38 @@
                             //                            'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
                             'walker' => new my_menu_class()
                         ) ); ?>
-                    </div>
 
-                    <div class="main-menu d-none d-lg-block">
-                        <nav>
-                            <ul id="navigation">
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="shop.html">shop</a></li>
-                                <li><a href="about.html">about</a></li>
-                                <li class="hot"><a href="#">Latest</a>
-                                    <ul class="submenu">
-                                        <li><a href="shop.html"> Product list</a></li>
-                                        <li><a href="product_details.html"> Product Details</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="blog.html">Blog</a>
-                                    <ul class="submenu">
-                                        <li><a href="blog.html">Blog</a></li>
-                                        <li><a href="blog-details.html">Blog Details</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Pages</a>
-                                    <ul class="submenu">
-                                        <li><a href="login.html">Login</a></li>
-                                        <li><a href="cart.html">Cart</a></li>
-                                        <li><a href="elements.html">Element</a></li>
-                                        <li><a href="confirmation.html">Confirmation</a></li>
-                                        <li><a href="checkout.html">Product Checkout</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="contact.html">Contact</a></li>
-                            </ul>
-                        </nav>
+<!--                        <nav>-->
+<!--                            <ul id="navigation">-->
+<!--                                <li><a href="index.html">Home</a></li>-->
+<!--                                <li><a href="shop.html">shop</a></li>-->
+<!--                                <li><a href="about.html">about</a></li>-->
+<!--                                <li class="hot"><a href="#">Latest</a>-->
+<!--                                    <ul class="submenu">-->
+<!--                                        <li><a href="shop.html"> Product list</a></li>-->
+<!--                                        <li><a href="product_details.html"> Product Details</a></li>-->
+<!--                                    </ul>-->
+<!--                                </li>-->
+<!--                                <li><a href="blog.html">Blog</a>-->
+<!--                                    <ul class="submenu">-->
+<!--                                        <li><a href="blog.html">Blog</a></li>-->
+<!--                                        <li><a href="blog-details.html">Blog Details</a></li>-->
+<!--                                    </ul>-->
+<!--                                </li>-->
+<!--                                <li><a href="#">Pages</a>-->
+<!--                                    <ul class="submenu">-->
+<!--                                        <li><a href="login.html">Login</a></li>-->
+<!--                                        <li><a href="cart.html">Cart</a></li>-->
+<!--                                        <li><a href="elements.html">Element</a></li>-->
+<!--                                        <li><a href="confirmation.html">Confirmation</a></li>-->
+<!--                                        <li><a href="checkout.html">Product Checkout</a></li>-->
+<!--                                    </ul>-->
+<!--                                </li>-->
+<!--                                <li><a href="contact.html">Contact</a></li>-->
+<!--                            </ul>-->
+<!--                        </nav>-->
                     </div>
-                    <!-- Header Right -->
+<!--                     Header Right -->
                     <div class="header-right">
                         <ul>
                             <li>

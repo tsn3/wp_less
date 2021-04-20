@@ -11,6 +11,33 @@
         <div class="br"></div>
     </aside>
     <aside class="single_sidebar_widget author_widget">
+        <?php
+
+        $arg = array(
+            'post_type' => array('jobs','news'),
+            'posts_per_page' => -1
+        );
+
+        $jobs = new WP_Query($arg);
+
+
+//
+//        print_r($jobs);
+
+        ?>
+
+        <?php if ($jobs->have_posts()): ?>
+            <?php while($jobs->have_posts()): ?>
+                <?php $jobs->the_post(); ?>
+                <?php the_title(); ?>
+                <?php the_excerpt(); ?>
+            <?php endwhile; ?>
+        <?php else : ?>
+            <hr><?php _e('Ничего не найденно.', 'artjoker')?><hr>
+        <?php endif; ?>
+
+        <?php wp_reset_postdata(); ?>
+
         <img class="author_img rounded-circle" src="img/blog/author.png" alt="">
         <h4>Charlie Barber</h4>
         <p>Senior blog writer</p>

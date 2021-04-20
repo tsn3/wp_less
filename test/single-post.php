@@ -37,7 +37,7 @@
                             </div>
                         </div>
                         <div class="col-lg-9 col-md-9 blog_details">
-                            <h2><?php the_title(); ?> (single.php)</h2>
+                            <h2><?php the_title(); ?> (single-post.php)</h2>
                             <?php the_content(); ?>
                         </div>
                         <div class="col-lg-12">
