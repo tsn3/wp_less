@@ -11,6 +11,30 @@ add_action( 'after_setup_theme', function() {
 	) );
 });
 
+add_action( 'widgets_init', 'register_my_widgets' );
+
+function register_my_widgets()
+{
+    register_sidebar( array(
+        'name'          => 'Left Sidebar',
+        'id'            => "left_sidebar",
+        'description'   => 'Описание нашего сайдбара',
+        'before_widget' => '<div class="widget %2$s">',
+        'after_widget'  => "</div>\n",
+        'before_title'  => '<h5 class="widgettitle">',
+        'after_title'   => "</h5>\n"
+    ) );
+    register_sidebar( array(
+        'name'          => 'Top Sidebar',
+        'id'            => "top_sidebar",
+        'description'   => 'Верхний сайдбар',
+        'before_widget' => '<div class="widget %2$s">',
+        'after_widget'  => "</div>\n",
+        'before_title'  => '<h5 class="widgettitle">',
+        'after_title'   => "</h5>\n"
+    ) );
+}
+
 add_action( 'after_setup_theme', function() {
 //    add_theme_support('title-tag');
 ////    add_theme_support('custom-logo');
