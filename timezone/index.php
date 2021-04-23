@@ -8,5 +8,5 @@
         <br><br>
     <?php endwhile; ?>
 <?php else : ?>
-    <hr><?php _e('Ничего не найденно.', 'artjoker')?><hr>
+    <hr><?php _e('Ничего не найденно.', 'tsn')?><hr>
 <?php endif; ?>
