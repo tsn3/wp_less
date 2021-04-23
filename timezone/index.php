@@ -10,3 +10,16 @@
 <?php else : ?>
     <hr><?php _e('Ничего не найденно.', 'tsn')?><hr>
 <?php endif; ?>
+<?php
+function dump() {
+echo '<pre>';
+
+    foreach (func_get_args() as $v) {
+        print_r($v);
+        echo PHP_EOL;
+        echo PHP_EOL;
+    }
+
+    echo '</pre>';
+}
+?>

@@ -4,72 +4,33 @@
     <div class="slider-area ">
         <div class="slider-active">
             <!-- Single Slider -->
-            <div class="single-slider slider-height d-flex align-items-center slide-bg">
-                <div class="container">
-                    <div class="row justify-content-between align-items-center">
-                        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
-                            <div class="hero__caption">
-                                <h1 data-animation="fadeInLeft" data-delay=".4s" data-duration="2000ms"><?php echo $slide['title'];?></h1>
-                                <p data-animation="fadeInLeft" data-delay=".7s" data-duration="2000ms"><?php echo $slide['content'];?></p>
-                                <!-- Hero-btn -->
-                                <div class="hero__btn" data-animation="fadeInLeft" data-delay=".8s" data-duration="2000ms">
-                                    <a href="industries.html" class="btn hero-btn">Shop Now</a>
+            <?php
+            $slider = CFS()->get('slider_loop');
+            ?>
+            <?php foreach ($slider as $slide) : ?>
+                <div class="single-slider slider-height d-flex align-items-center slide-bg">
+                    <div class="container">
+                        <div class="row justify-content-between align-items-center">
+                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                                <div class="hero__caption">
+                                    <h1 data-animation="fadeInLeft" data-delay=".8s" data-duration="20ms"><?php echo $slide['title'];?></h1>
+                                    <p data-animation="fadeInLeft" data-delay=".8s" data-duration="20ms"><?php echo $slide['content'];?></p>
+                                    <!-- Hero-btn -->
+                                    <div class="hero__btn" data-animation="fadeInLeft" data-delay=".8s" data-duration="30ms">
+                                        <span class="btn hero-btn">Кастомный слайдер</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 d-none d-sm-block">
-                            <div class="hero__img" data-animation="bounceIn" data-delay=".4s">
-<!--                                <img src="--><?php //echo get_template_directory_uri(); ?><!--/assets/img/hero/watch.png" alt="" class=" heartbeat">-->
+                            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 d-none d-sm-block">
+                                <div class="hero__img" data-animation="bounceIn" data-delay=".3s">
+                                    <img class="img-fluid" src="<?php echo $slide['image'];?>" alt="<?php echo esc_attr($slide['title']);?>">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-<!--            <div class="single-slider slider-height d-flex align-items-center slide-bg">-->
-<!--                <div class="container">-->
-<!--                    <div class="row justify-content-between align-items-center">-->
-<!--                        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">-->
-<!--                            <div class="hero__caption">-->
-<!--                                <h1 data-animation="fadeInLeft" data-delay=".4s" data-duration="2000ms">Select Your New Perfect Style</h1>-->
-<!--                                <p data-animation="fadeInLeft" data-delay=".7s" data-duration="2000ms">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat is aute irure.</p>-->
-<!--                                 Hero-btn -->
-<!--                                <div class="hero__btn" data-animation="fadeInLeft" data-delay=".8s" data-duration="2000ms">-->
-<!--                                    <a href="industries.html" class="btn hero-btn">Shop Now</a>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 d-none d-sm-block">-->
-<!--                            <div class="hero__img" data-animation="bounceIn" data-delay=".4s">-->
-<!--                                <img src="--><?php //echo get_template_directory_uri(); ?><!--/assets/img/hero/watch.png" alt="" class=" heartbeat">-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
+            <?php endforeach; ?>
             <!-- Single Slider -->
-            <div class="single-slider slider-height d-flex align-items-center slide-bg">
-                <div class="container">
-                    <div class="row justify-content-between align-items-center">
-                        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
-                            <div class="hero__caption">
-                                <h1 data-animation="fadeInLeft" data-delay=".4s" data-duration="2000ms"><?php echo $slide['title'];?></h1>
-                                <p data-animation="fadeInLeft" data-delay=".7s" data-duration="2000ms"><?php echo $slide['content'];?></p>
-                                <!-- Hero-btn -->
-                                <div class="hero__btn" data-animation="fadeInLeft" data-delay=".8s" data-duration="2000ms">
-                                    <a href="industries.html" class="btn hero-btn">Shop Now</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 d-none d-sm-block">
-                            <div class="hero__img" data-animation="bounceIn" data-delay=".4s">
-                                <img class="img-fluid" src="<?php echo $slide['image'];?>" alt="<?php echo esc_attr($slide['title']);?>">
-
-                                <!--                                <img src="--><?php //echo get_template_directory_uri(); ?><!--/assets/img/hero/watch.png" alt="" class=" heartbeat">-->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     <!-- slider Area End-->
@@ -323,22 +284,22 @@
                     <div class="col-xl-4 col-lg-4 col-md-6">
                         <div class="single-method mb-40">
                             <i class="ti-package"></i>
-                            <h6><?php _e('Free Shipping Method', 'tsn')?></h6>
-                            <p><?php _e('aorem ixpsacdolor sit ameasecur adipisicing elitsf edasd.', 'tsn')?></p>
+                            <h6><?php _e('Бесплатная доставка', 'tsn')?></h6>
+                            <p><?php _e('Передать дополнительный контекст в шаблоны полей.', 'tsn')?></p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-lg-4 col-md-6">
                         <div class="single-method mb-40">
                             <i class="ti-unlock"></i>
-                            <h6><?php _e('Secure Payment System', 'tsn')?></h6>
-                            <p><?php _e('aorem ixpsacdolor sit ameasecur adipisicing elitsf edasd.', 'tsn')?></p>
+                            <h6><?php _e('Безопасная платежная система', 'tsn')?></h6>
+                            <p><?php _e('Передать дополнительный контекст в шаблоны полей.', 'tsn')?></p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-lg-4 col-md-6">
                         <div class="single-method mb-40">
                             <i class="ti-reload"></i>
-                            <h6><?php _e('Secure Payment System', 'tsn')?></h6>
-                            <p><?php _e('aorem ixpsacdolor sit ameasecur adipisicing elitsf edasd.', 'tsn')?></p>
+                            <h6><?php _e('Безопасная платежная система', 'tsn')?></h6>
+                            <p><?php _e('Передать дополнительный контекст в шаблоны полей.', 'tsn')?></p>
                         </div>
                     </div>
                 </div>

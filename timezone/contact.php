@@ -1,5 +1,5 @@
 <?php /* Template name: Contact */ ?>
-<?php get_header(); ?>
+<?php get_header(); the_post(); ?>
 <main>
     <!--? Hero Area Start-->
     <div class="slider-area ">
@@ -8,7 +8,7 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="hero-cap text-center">
-                            <h2>Contacts</h2>
+                            <h2><?php the_title(); ?></h2>
                         </div>
                     </div>
                 </div>
@@ -56,22 +56,22 @@
                     <div class="media contact-info">
                         <span class="contact-info__icon"><i class="ti-home"></i></span>
                         <div class="media-body">
-                            <h3>Buttonwood, California.</h3>
-                            <p>Rosemead, CA 91770</p>
+                            <h3><?php echo get_option('test_address'); ?></h3>
+                            <p><?php echo get_option('test_post_address'); ?></p>
                         </div>
                     </div>
                     <div class="media contact-info">
                         <span class="contact-info__icon"><i class="ti-tablet"></i></span>
                         <div class="media-body">
-                            <h3>+1 253 565 2365</h3>
-                            <p>Mon to Fri 9am to 6pm</p>
+                            <h3><?php echo get_option('test_phone'); ?></h3>
+                            <p><?php echo get_option('test_time_job'); ?></p>
                         </div>
                     </div>
                     <div class="media contact-info">
                         <span class="contact-info__icon"><i class="ti-email"></i></span>
                         <div class="media-body">
-                            <h3>support@colorlib.com</h3>
-                            <p>Send us your query anytime!</p>
+                            <h3><?php echo get_option('test_email'); ?></h3>
+                            <p><?php echo get_option('test_text'); ?></p>
                         </div>
                     </div>
                 </div>
