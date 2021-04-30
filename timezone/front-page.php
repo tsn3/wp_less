@@ -39,6 +39,51 @@
         <div class="container">
             <!-- Section tittle -->
             <div class="row">
+
+<!--                <div class="col-lg-8">-->
+<!--                    <div class="blog_left_sidebar">-->
+<!--                        --><?php //if (have_posts()): ?>
+<!--                            --><?php //while(have_posts()): ?>
+<!--                                --><?php //the_post(); ?>
+<!--                                <article id="post---><?php //the_ID(); ?><!--" --><?php //post_class('row blog_item'); ?><!-->-->
+<!--                                    <div class="col-md-3">-->
+<!--                                        <div class="blog_info text-right">-->
+<!--                                            <div class="post_tag">-->
+<!--                                                --><?php
+//                                                foreach( get_the_category() as $employee ) {
+//                                                    echo '<a href="' . get_category_link($employee->term_id ) . '">' . $employee->name . '</a>&nbsp;';
+//                                                }
+//                                                ?>
+<!--                                            </div>-->
+<!--                                            <ul class="blog_meta list">-->
+<!--                                                --><?php //do_action('block_meta'); ?>
+<!--                                            </ul>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--<!--                                    <div class="col-md-9">-->-->
+<!--<!--                                        <div class="blog_post">-->-->
+<!--<!--                                            -->--><?php ////if(get_the_post_thumbnail_url()): ?>
+<!--<!--                                                <img src="-->--><?php ////echo get_the_post_thumbnail_url( get_the_ID(), 'post_preview' );?><!--<!--" alt="-->--><?php ////the_title(); ?><!--<!--">-->-->
+<!--<!--                                            -->--><?php ////else: ?>
+<!--<!--                                                <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="-->--><?php ////the_title(); ?><!--<!--">-->-->
+<!--<!--                                            -->--><?php ////endif; ?>
+<!--<!---->-->
+<!--<!--                                            <div class="blog_details">-->-->
+<!--<!--                                                <a href="-->--><?php ////the_permalink(); ?><!--<!--">-->-->
+<!--<!--                                                    -->--><?php ////the_title('<h2>', '</h2>'); ?>
+<!--<!--                                                </a>-->-->
+<!--<!--                                                <p>-->--><?php ////the_content(); ?><!--<!--</p>-->-->
+<!--<!--                                            </div>-->-->
+<!--<!--                                        </div>-->-->
+<!--<!--                                    </div>-->-->
+<!--                                </article>-->
+<!--                            --><?php //endwhile; ?>
+<!--                        --><?php //else : ?>
+<!--                            <hr>--><?php //_e('Ничего не найденно.', 'artjoker')?><!--<hr>-->
+<!--                        --><?php //endif; ?>
+<!--                    </div>-->
+<!--                </div>-->
+
                 <div class="col-xl-12">
                     <div class="section-tittle mb-70">
                         <h2>Наши сотрудники</h2>
@@ -90,6 +135,23 @@
                             <h3><a href="product_details.html"><?php if ($employee->have_posts()): ?>
                                         <?php while($employee->have_posts()): ?>
                                             <?php $employee->the_post(); ?>
+                                            <?php $employee->the_post_thumbnail_url(); ?>
+<!--                                            $attachments = get_children(array('post_parent' => $post->ID,-->
+<!--                                            'post_status' => 'inherit',-->
+<!--                                            'post_type' => 'attachment',-->
+<!--                                            'post_mime_type' => 'image',-->
+<!--                                            'order' => 'ASC',-->
+<!--                                            'orderby' => 'menu_order ID'));-->
+<!---->
+<!--                                            foreach($attachments as $att_id => $attachment) {-->
+<!--                                            $full_img_url = wp_get_attachment_url($attachment->ID);-->
+<!--                                            // Your Code here-->
+<!--                                            }-->
+                                            <?php if($employee->the_post_thumbnail_url()): ?>
+                                                <img src="<?php echo $employee->get_the_post_thumbnail_url( get_the_ID(), 'post_preview' );?>" alt="<?php the_title(); ?>">
+                                            <?php else: ?>
+                                                <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="<?php the_title(); ?>">
+                                            <?php endif; ?>
                                             <?php the_title(); ?>
                                             <?php the_excerpt(); ?>
                                         <?php endwhile; ?>
@@ -102,17 +164,50 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                    <div class="single-new-pro mb-30 text-center">
-                        <div class="product-img">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/gallery/new_product3.png" alt="">
-                        </div>
-                        <div class="product-caption">
-                            <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
-                            <span>$ 45,743</span>
-                        </div>
-                    </div>
-                </div>
+<!--                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">-->
+<!--                    <div class="single-new-pro mb-30 text-center">-->
+<!--                        <div class="product-img">-->
+<!--                            <img src="--><?php //echo get_the_post_thumbnail_url( get_the_ID(), 'posts_per_page' );?><!--" alt="">-->
+<!--                        </div>-->
+<!--                        <div class="product-caption">-->
+<!--                            <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>-->
+<!--                            <span>$ 45,743</span>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">-->
+<!--                    <div class="single-new-pro mb-30 text-center">-->
+<!--                        <div class="product-img">-->
+<!--                            <img src="--><?php //echo get_the_post_thumbnail_url( get_the_ID(), 'posts_per_page' );?><!--" alt="--><?php //the_title(); ?><!--">-->
+<!--                        </div>-->
+<!--                        <div class="product-caption">-->
+<!--                            <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>-->
+<!--                            <span>$ 45,743</span>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!---->
+<!---->
+<!--                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">-->
+<!--                    <div class="single-new-pro mb-30 text-center">-->
+<!--                        --><?php //if(get_the_post_thumbnail_url()): ?>
+<!--                            <img src="--><?php //echo get_the_post_thumbnail_url( get_the_ID(), 'posts_per_page' );?><!--" alt="--><?php //the_title(); ?><!--">-->
+<!--                        --><?php //else: ?>
+<!--                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="--><?php //the_title(); ?><!--">-->
+<!--                        --><?php //endif; ?>
+<!---->
+<!--                        <div class="blog_details">-->
+<!--                            <a href="--><?php //the_permalink(); ?><!--">-->
+<!--                                --><?php //the_title('<h2>', '</h2>'); ?>
+<!--                            </a>-->
+<!--                            <p>--><?php //the_excerpt(); ?><!--</p>-->
+<!--                            <!--                                                <p>-->--><?php ////the_content(); ?><!--<!--</p>-->-->
+<!--                            <a href="--><?php //the_permalink(); ?><!--" class="white_bg_btn">-->
+<!--                                --><?php //_e('Подробней', 'artjoker')?>
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
         </div>
     </section>

@@ -8,7 +8,17 @@
                         <div class="single-footer-caption mb-30">
                             <!-- logo -->
                             <div class="footer-logo">
-                                <a href="index.html"><img src="assets/img/logo/logo2_footer.png" alt=""></a>
+	                            <?php
+	                            if (get_custom_logo()) {
+		                            the_custom_logo();
+	                            } else {
+		                            ?>
+                                    <div class="logo">
+                                        <a href="<?php echo get_site_url(); ?>"><img src="<?php echo get_template_directory_uri() ?>/assets/img/logo/logo2_footer.png" alt=""></a>
+                                    </div>
+		                            <?php
+	                            }
+	                            ?>
                             </div>
                             <div class="footer-tittle">
                                 <div class="footer-pera">
@@ -18,42 +28,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-2 col-lg-3 col-md-3 col-sm-5">
+
+
+                <div class="col-xl-2 col-lg-1 col-md-1 col-sm-5">
                     <div class="single-footer-caption mb-50">
+
                         <div class="footer-tittle">
-                            <h4>Quick Links</h4>
-                            <ul>
-                                <li><a href="#">About</a></li>
-                                <li><a href="#"> Offers & Discounts</a></li>
-                                <li><a href="#"> Get Coupon</a></li>
-                                <li><a href="#">  Contact Us</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-7">
-                    <div class="single-footer-caption mb-50">
-                        <div class="footer-tittle">
-                            <h4>New Products</h4>
-                            <ul>
-                                <li><a href="#">Woman Cloth</a></li>
-                                <li><a href="#">Fashion Accessories</a></li>
-                                <li><a href="#"> Man Accessories</a></li>
-                                <li><a href="#"> Rubber made Toys</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-5 col-sm-7">
-                    <div class="single-footer-caption mb-50">
-                        <div class="footer-tittle">
-                            <h4>Support</h4>
-                            <ul>
-                                <li><a href="#">Frequently Asked Questions</a></li>
-                                <li><a href="#">Terms & Conditions</a></li>
-                                <li><a href="#">Privacy Policy</a></li>
-                                <li><a href="#">Report a Payment Issue</a></li>
-                            </ul>
+	                        <?php wp_nav_menu( array(
+		                        'theme_location' => 'footer-menu',
+		                        'container'       => 'div',
+		                        'menu_id'         => 'navigation',
+				                    'menu_class'      => 'single-footer-caption mb-50',
+		                        'depth' => 1,
+		                        'walker' => new my_menu_class()
+	                        ) ); ?>
                         </div>
                     </div>
                 </div>

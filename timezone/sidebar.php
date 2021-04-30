@@ -1,9 +1,8 @@
-<div class="blog_right_sidebar">
     <aside class="single_sidebar_widget search_widget">
-        <form action="<?php echo home_url(); ?>" method="GET">
+        <form action=<?php echo home_url(); ?>" method="GET">
             <div class="form-group">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="<?php _e("Search Posts", 'tsn'); ?>"
+                    <input type="text" class="form-control" placeholder="<?php _e("Search Keyword", 'tsn'); ?>"
                            onfocus="this.placeholder = ''"
                            onblur="this.placeholder = 'Search Keyword'">
                     <div class="input-group-append">
@@ -127,11 +126,11 @@
         </ul>
     </aside>
 
+    <?php dynamic_sidebar('right_sidebar')?>
 
 
-    <?php dynamic_sidebar('left_sidebar')?>
-
-
+    <aside class="single_sidebar_widget instagram_feeds">
+    </aside>
 
 
     <aside class="single_sidebar_widget newsletter_widget">
@@ -146,4 +145,3 @@
                     type="submit">Subscribe</button>
         </form>
     </aside>
-</div>

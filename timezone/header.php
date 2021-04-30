@@ -1,10 +1,21 @@
-<!doctype html>
+<?php
+/**
+ * The header.
+ *
+ * This is the template that displays all of the <head> section and everything up until main.
+ *
+ * @package WordPress
+ * @subpackage Timezone
+ * @since Timezone 1.0
+ */
+
+?><!doctype html>
 <html class="no-js" <?php language_attributes(); ?>>
 <head>
     <base href="<?php echo home_url(); ?>" />
     <meta charset="<?php bloginfo( 'charset' ); ?>" />
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-<!--    <title>Watch shop | eCommers</title>-->
+    <title><?php echo wp_get_document_title(); ?></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
@@ -12,6 +23,7 @@
 </head>
 
 <body <?php body_class(); ?>>
+<?php wp_body_open(); ?>
 <!--? Preloader Start -->
 <div id="preloader-active">
     <div class="preloader d-flex align-items-center justify-content-center">
@@ -39,7 +51,7 @@
                             $image_logo = wp_get_attachment_image_src($image_id, 'full');
                             $image_logo = array_shift($image_logo);
                         } else {
-                            $image_logo = $theme_dir . 'img/logo/logo.png';
+                            $image_logo = $theme_dir . 'assets/img/logo/logo.png';
                         }
                         ?>
 
@@ -54,17 +66,13 @@
                         <?php endif; ?>
                     </div>
                     <!-- Main-menu -->
-
                     <div class="main-menu d-none d-lg-block">
                         <?php wp_nav_menu( array(
                             'theme_location' => 'primary-menu',
-//                            'menu_class' => 'navigation',
+                            'container'       => 'div',
                             'menu_id'         => 'navigation',
+                            'menu_class'      => 'main-menu d-none d-lg-block',
                             'depth' => 1,
-                            //                            'container'       => 'div',
-                            //                            'container_class' => 'collapse navbar-collapse offset',
-                            //                            'container_id'    => 'navbarSupportedContent',
-                            //                            'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
                             'walker' => new my_menu_class()
                         ) ); ?>
                     </div>
@@ -76,8 +84,6 @@
                                     <span class="flaticon-search"></span>
                                 </div>
                             </li>
-                            <li> <a href="login.html"><span class="flaticon-user"></span></a></li>
-                            <li><a href="cart.html"><span class="flaticon-shopping-cart"></span></a> </li>
                         </ul>
                     </div>
                 </div>
