@@ -17,7 +17,7 @@
                                     <p data-animation="fadeInLeft" data-delay=".8s" data-duration="20ms"><?php echo $slide['content'];?></p>
                                     <!-- Hero-btn -->
                                     <div class="hero__btn" data-animation="fadeInLeft" data-delay=".8s" data-duration="30ms">
-                                        <span class="btn hero-btn">Кастомный слайдер</span>
+                                        <span class="btn hero-btn"><?php _e('Влево/вправо', 'tsn'); ?></span>
                                     </div>
                                 </div>
                             </div>
@@ -34,213 +34,59 @@
         </div>
     </div>
     <!-- slider Area End-->
-    <!-- ? New Product Start -->
-    <section class="new-product-area section-padding30">
-        <div class="container">
-            <!-- Section tittle -->
-            <div class="row">
 
-<!--                <div class="col-lg-8">-->
-<!--                    <div class="blog_left_sidebar">-->
-<!--                        --><?php //if (have_posts()): ?>
-<!--                            --><?php //while(have_posts()): ?>
-<!--                                --><?php //the_post(); ?>
-<!--                                <article id="post---><?php //the_ID(); ?><!--" --><?php //post_class('row blog_item'); ?><!-->-->
-<!--                                    <div class="col-md-3">-->
-<!--                                        <div class="blog_info text-right">-->
-<!--                                            <div class="post_tag">-->
-<!--                                                --><?php
-//                                                foreach( get_the_category() as $employee ) {
-//                                                    echo '<a href="' . get_category_link($employee->term_id ) . '">' . $employee->name . '</a>&nbsp;';
-//                                                }
-//                                                ?>
-<!--                                            </div>-->
-<!--                                            <ul class="blog_meta list">-->
-<!--                                                --><?php //do_action('block_meta'); ?>
-<!--                                            </ul>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--<!--                                    <div class="col-md-9">-->-->
-<!--<!--                                        <div class="blog_post">-->-->
-<!--<!--                                            -->--><?php ////if(get_the_post_thumbnail_url()): ?>
-<!--<!--                                                <img src="-->--><?php ////echo get_the_post_thumbnail_url( get_the_ID(), 'post_preview' );?><!--<!--" alt="-->--><?php ////the_title(); ?><!--<!--">-->-->
-<!--<!--                                            -->--><?php ////else: ?>
-<!--<!--                                                <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="-->--><?php ////the_title(); ?><!--<!--">-->-->
-<!--<!--                                            -->--><?php ////endif; ?>
-<!--<!---->-->
-<!--<!--                                            <div class="blog_details">-->-->
-<!--<!--                                                <a href="-->--><?php ////the_permalink(); ?><!--<!--">-->-->
-<!--<!--                                                    -->--><?php ////the_title('<h2>', '</h2>'); ?>
-<!--<!--                                                </a>-->-->
-<!--<!--                                                <p>-->--><?php ////the_content(); ?><!--<!--</p>-->-->
-<!--<!--                                            </div>-->-->
-<!--<!--                                        </div>-->-->
-<!--<!--                                    </div>-->-->
-<!--                                </article>-->
-<!--                            --><?php //endwhile; ?>
-<!--                        --><?php //else : ?>
-<!--                            <hr>--><?php //_e('Ничего не найденно.', 'artjoker')?><!--<hr>-->
-<!--                        --><?php //endif; ?>
-<!--                    </div>-->
-<!--                </div>-->
-
-                <div class="col-xl-12">
-                    <div class="section-tittle mb-70">
-                        <h2>Наши сотрудники</h2>
+    <!-- ? Employee Start -->
+	<?php $employes = array (
+		'post_type' => 'employee',
+		'posts_per_page' => 3,
+		'orderby'        => 'rand'
+	);
+	$query_employes = new WP_Query ($employes);
+	if ($query_employes->have_posts() ){ ?>
+        <section class="new-product-area section-padding30">
+            <div class="container">
+                <!-- Section tittle -->
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="section-tittle mb-70">
+                            <h2><?php _e('Наши сотрудники', 'tsn');?></h2>
+                        </div>
                     </div>
+                </div>
+                <div class="row">
+					<?php while ($query_employes->have_posts() ) {
+						$query_employes->the_post(); ?>
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                            <div class="single-new-pro mb-30 text-center">
+                                <div class="product-img">
+									<?php if (get_the_post_thumbnail()) {
+										the_post_thumbnail('employee_image');
+									} else { ?>
+                                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/Anonymous.svg" alt="image not added">
+                                    <?php } ?>
+                                </div>
+                                <div class="product-caption">
+                                    <h3><a href="product_details.html"><?php the_title(); ?></a></h3>
+                                </div>
+                            </div>
+                        </div>
+                    <?php } wp_reset_postdata(); ?>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                    <div class="single-new-pro mb-30 text-center">
-                        <div class="product-img">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/gallery/new_product1.png" alt="">
-                        </div>
-                        <div class="product-caption">
-                            <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
-                            <span>$ 45,743</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                    <div class="single-new-pro mb-30 text-center">
-                        <div class="product-img">
-                            <?php
+        </section>
+		<?php
+	} ?>
+    <!--  Employee End -->
 
-                            $arg = array(
-                                'post_type' => array('employee'),
-                                'posts_per_page' => -1
-                            );
-
-                            $employee = new WP_Query($arg);
-
-                            ?>
-<!---->
-<!--                            --><?php //if ($employee->have_posts()): ?>
-<!--                                --><?php //while($employee->have_posts()): ?>
-<!--                                    --><?php //$employee->the_post(); ?>
-<!--                                    --><?php //the_title(); ?>
-<!--                                    --><?php //the_excerpt(); ?>
-<!--                                --><?php //endwhile; ?>
-<!--                            --><?php //else : ?>
-<!--                                <hr>--><?php //_e('Ничего не найденно.', 'tsn')?><!--<hr>-->
-<!--                            --><?php //endif; ?>
-<!---->
-<!--                            --><?php //wp_reset_postdata(); ?>
-<!--                            <img src="--><?php //echo get_template_directory_uri(); ?><!--/assets/img/gallery/new_product2.png" alt="">-->
-                        </div>
-                        <div class="product-caption">
-                            <?php get_gallery(4); ?>
-
-                            <h3><a href="product_details.html"><?php if ($employee->have_posts()): ?>
-                                        <?php while($employee->have_posts()): ?>
-                                            <?php $employee->the_post(); ?>
-                                            <?php $employee->the_post_thumbnail_url(); ?>
-<!--                                            $attachments = get_children(array('post_parent' => $post->ID,-->
-<!--                                            'post_status' => 'inherit',-->
-<!--                                            'post_type' => 'attachment',-->
-<!--                                            'post_mime_type' => 'image',-->
-<!--                                            'order' => 'ASC',-->
-<!--                                            'orderby' => 'menu_order ID'));-->
-<!---->
-<!--                                            foreach($attachments as $att_id => $attachment) {-->
-<!--                                            $full_img_url = wp_get_attachment_url($attachment->ID);-->
-<!--                                            // Your Code here-->
-<!--                                            }-->
-                                            <?php if($employee->the_post_thumbnail_url()): ?>
-                                                <img src="<?php echo $employee->get_the_post_thumbnail_url( get_the_ID(), 'post_preview' );?>" alt="<?php the_title(); ?>">
-                                            <?php else: ?>
-                                                <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="<?php the_title(); ?>">
-                                            <?php endif; ?>
-                                            <?php the_title(); ?>
-                                            <?php the_excerpt(); ?>
-                                        <?php endwhile; ?>
-                                    <?php else : ?>
-                                        <hr><?php _e('Ничего не найденно.', 'tsn')?><hr>
-                                    <?php endif; ?>
-
-                                    <?php wp_reset_postdata(); ?></a></h3>
-<!--                            <span>$ 45,743</span>-->
-                        </div>
-                    </div>
-                </div>
-<!--                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">-->
-<!--                    <div class="single-new-pro mb-30 text-center">-->
-<!--                        <div class="product-img">-->
-<!--                            <img src="--><?php //echo get_the_post_thumbnail_url( get_the_ID(), 'posts_per_page' );?><!--" alt="">-->
-<!--                        </div>-->
-<!--                        <div class="product-caption">-->
-<!--                            <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>-->
-<!--                            <span>$ 45,743</span>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">-->
-<!--                    <div class="single-new-pro mb-30 text-center">-->
-<!--                        <div class="product-img">-->
-<!--                            <img src="--><?php //echo get_the_post_thumbnail_url( get_the_ID(), 'posts_per_page' );?><!--" alt="--><?php //the_title(); ?><!--">-->
-<!--                        </div>-->
-<!--                        <div class="product-caption">-->
-<!--                            <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>-->
-<!--                            <span>$ 45,743</span>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!---->
-<!---->
-<!--                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">-->
-<!--                    <div class="single-new-pro mb-30 text-center">-->
-<!--                        --><?php //if(get_the_post_thumbnail_url()): ?>
-<!--                            <img src="--><?php //echo get_the_post_thumbnail_url( get_the_ID(), 'posts_per_page' );?><!--" alt="--><?php //the_title(); ?><!--">-->
-<!--                        --><?php //else: ?>
-<!--                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="--><?php //the_title(); ?><!--">-->
-<!--                        --><?php //endif; ?>
-<!---->
-<!--                        <div class="blog_details">-->
-<!--                            <a href="--><?php //the_permalink(); ?><!--">-->
-<!--                                --><?php //the_title('<h2>', '</h2>'); ?>
-<!--                            </a>-->
-<!--                            <p>--><?php //the_excerpt(); ?><!--</p>-->
-<!--                            <!--                                                <p>-->--><?php ////the_content(); ?><!--<!--</p>-->-->
-<!--                            <a href="--><?php //the_permalink(); ?><!--" class="white_bg_btn">-->
-<!--                                --><?php //_e('Подробней', 'artjoker')?>
-<!--                            </a>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-            </div>
-        </div>
-    </section>
-    <!--  New Product End -->
     <!--? Gallery Area Start -->
     <div class="gallery-area">
         <div class="container-fluid p-0 fix">
             <div class="row">
-                <div class="col-xl-6 col-lg-4 col-md-6 col-sm-6">
-                    <div class="single-gallery mb-30">
-                        <div class="gallery-img big-img" style="background-image: url(<?php echo get_template_directory_uri(); ?>/assets/img/gallery/gallery1.png);"></div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                    <div class="single-gallery mb-30">
-                        <div class="gallery-img big-img" style="background-image: url(<?php echo get_template_directory_uri(); ?>assets/img/gallery/gallery2.png);"></div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-12">
-                    <div class="row">
-                        <div class="col-xl-12 col-lg-12 col-md-6 col-sm-6">
-                            <div class="single-gallery mb-30">
-                                <div class="gallery-img small-img" style="background-image: url(<?php echo get_template_directory_uri(); ?>assets/img/gallery/gallery3.png);"></div>
-                            </div>
-                        </div>
-                        <div class="col-xl-12 col-lg-12  col-md-6 col-sm-6">
-                            <div class="single-gallery mb-30">
-                                <div class="gallery-img small-img" style="background-image: url(<?php echo get_template_directory_uri(); ?>assets/img/gallery/gallery4.png);"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                <?php
+                $gallery_images = CFS()->get('gallery_images');
+                foreach ($gallery_images as $image) {
+	                echo '<img src="'.$image["image"].'"/>';
+                }?>
             </div>
         </div>
     </div>

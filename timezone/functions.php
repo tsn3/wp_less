@@ -49,8 +49,7 @@ class my_menu_class extends Walker_Nav_Menu {
 
 }
 
-add_image_size('post_image', 361, 489, 1);
-
+add_image_size('employee_image', 361, 489, 1);
 
 
 // Волшебный AJAX
