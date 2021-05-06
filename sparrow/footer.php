@@ -1,16 +1,10 @@
 <!-- footer
-   ================================================== -->
-<footer id="footer">
+================================================== -->
+<footer>
 
     <div class="row">
 
         <div class="twelve columns">
-
-            <?php wp_nav_menu(array(
-                'theme_location'  => 'footer',
-                'container'       => null,
-                'menu_class'      => 'footer-menu'
-            )); ?>
 
             <ul class="footer-nav">
                 <li><a href="#">Home.</a></li>
@@ -43,8 +37,15 @@
 
 </footer> <!-- Footer End-->
 
+<!-- Java Script
+================================================== -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/jquery-1.10.2.min.js"><\/script>')</script>
+<script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>
 
-<?php wp_footer(); ?>
+<script src="js/jquery.flexslider.js"></script>
+<script src="js/doubletaptogo.js"></script>
+<script src="js/init.js"></script>
 
 </body>
 

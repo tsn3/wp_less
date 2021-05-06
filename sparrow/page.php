@@ -1,4 +1,4 @@
-<?php get_header('page'); ?>
+<?php get_header();?>
 
 <!-- Page Title
 ================================================== -->
@@ -150,7 +150,8 @@
         </div> <!-- Primary End-->
 
         <div id="secondary" class="four columns end">
-            <?php get_sidebar(); ?>
+        <?php get_sidebar(); ?>
+
 
         </div> <!-- Secondary End-->
 

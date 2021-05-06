@@ -6,9 +6,9 @@
 
     <!--- Basic Page Needs
     ================================================== -->
-    <meta charset="<?php bloginfo('charset'); ?>">
+    <meta charset="utf-8">
     <title>Sparrow - Free Responsive HTML5/CSS3 Template</title>
-    <meta name="description" content="<?php bloginfo('description'); ?>">
+    <meta name="description" content="">
     <meta name="author" content="">
 
     <!-- Mobile Specific Metas
@@ -19,7 +19,7 @@
      ================================================== -->
     <link rel="shortcut icon" href="favicon.ico" >
 
-    <?php wp_head(); ?>
+    <?php wp_head();?>
 
 </head>
 
@@ -34,11 +34,9 @@
         <div class="twelve columns">
 
             <div class="logo">
-                </a>
-                <a href="<?php bloginfo('url'); ?>">
-                    <div class=""><?php bloginfo('name'); ?></div>
-                    <img alt="" src="images/logo.png">
-                </a>
+                <a href="<?php echo home_url(); ?>">
+                    <div><?php bloginfo('name');?> </div>
+                    <img alt="" src="images/logo.png"></a>
             </div>
 
             <nav id="nav-wrap">

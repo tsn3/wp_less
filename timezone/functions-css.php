@@ -26,7 +26,7 @@ function employee_register_post_type_init()
         'public' => true,
         'show_ui' => true, // show the interface in the admin area
         'has_archive' => true,
-        'menu_icon' => 'dashicons-edit-large', // menu icon
+        'menu_icon' => 'dashicons-businessman', // menu icon
         'menu_position' => 10, // order in the menu
         'supports' => array( 'title', 'editor', 'comments', 'author', 'thumbnail')
     );
@@ -58,7 +58,7 @@ function news_register_post_type_init()
         'public' => true,
         'show_ui' => true, // show the interface in the admin area
         'has_archive' => true,
-        'menu_icon' => 'dashicons-edit-large', // menu icon
+        'menu_icon' => 'dashicons-format-aside', // menu icon
         'menu_position' => 20, // order in the menu
         'supports' => array( 'title', 'editor', 'comments', 'author', 'thumbnail')
     );
