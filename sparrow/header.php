@@ -7,6 +7,7 @@
     <!--- Basic Page Needs
     ================================================== -->
     <meta charset="<?php bloginfo('charset'); ?>">
+    <title>Sparrow - Free Responsive HTML5/CSS3 Template</title>
     <meta name="description" content="<?php bloginfo('description'); ?>">
     <meta name="author" content="">
 

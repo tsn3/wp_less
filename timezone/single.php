@@ -7,7 +7,7 @@
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="hero-cap text-center">
-                                <h2><?php the_archive_title(); ?></h2>
+                                <h2><?php the_title(); ?></h2>
                             </div>
                         </div>
                     </div>
@@ -25,7 +25,7 @@
                                     <article <?php post_class('blog_item'); ?> id="post-<?php the_ID(); ?>">
                                         <div class="blog_item_img">
 						                    <?php if (get_the_post_thumbnail()) { ?>
-                                                <img class="card-img rounded-0" src="<?php the_post_thumbnail_url('post_image'); ?>" alt="<?php the_title(); ?>">
+                                                <img class="card-img rounded-0" src="<?php the_post_thumbnail_url('blog-size'); ?>" alt="<?php the_title(); ?>">
 							                    <?php
 						                    } else { ?>
                                                 <img src="<?php echo get_template_directory_uri() ?>/assets/img/Anonymous.svg" alt="image not added">
@@ -43,6 +43,7 @@
                                                 <h2><?php the_title(); ?></h2>
                                             </a>
                                             <p><?php the_excerpt(); ?></p>
+
                                             <ul class="blog-info-link mt-3 mb-4"">
                                                 <li>
                                                     <a href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>">
@@ -60,7 +61,7 @@
                                                         $views = (int)get_post_meta($post_id, 'views', true);
                                                         echo $views . ' ' . _e('Количество просмотров', 'tsn'); ?>
                                                     </a>
-                                                 </li>
+                                                </li>
 
                                                 <li>
                                                     <a href="#">

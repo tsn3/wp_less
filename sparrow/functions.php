@@ -31,9 +31,6 @@ function theme_register_nav_menu()
 {
     register_nav_menu('top', 'menu in HEADER');
     register_nav_menu('footer', 'menu in FOOTER');
-    add_theme_support( 'title-tag' );
-    add_theme_support( 'post-thumbnails', array( 'post' ) );
-    add_image_size( 'post-thumb', 1300, 500, true );
 }
 
 

@@ -8,8 +8,8 @@ require get_template_directory() . '/functions-css.php';
 
 add_action( 'after_setup_theme', function() {
     add_theme_support('title-tag');
-    add_theme_support('post-thumbnails');
-    add_theme_support('woocommerce');
+	add_theme_support( 'post-thumbnails', array( 'post' ) );
+//    add_theme_support('woocommerce');
     add_theme_support('html5');
 
 	add_theme_support( 'custom-logo', array(
@@ -23,6 +23,26 @@ add_action( 'after_setup_theme', function() {
             'mobile-menu' => 'Мобильное меню',
         )
     );
+
+	add_filter( 'excerpt_more', 'new_excerpt_more' );
+	function new_excerpt_more( $more ){
+		global $post;
+		return '<a href="'. get_permalink($post) . '">Читать дальше...</a>';
+	}
+	// удаляет H2 из шаблона пагинации
+	add_filter('navigation_markup_template', 'my_navigation_template', 10, 2 );
+	function my_navigation_template( $template, $class ){
+		return '
+	<nav class="navigation %1$s" role="navigation">
+		<div class="nav-links">%3$s</div>
+	</nav>    
+	';
+	}
+
+// выводим пагинацию
+	the_posts_pagination( array(
+		'end_size' => 2,
+	) );
 
 });
 
@@ -42,14 +62,9 @@ function register_my_widgets()
     ) );
 }
 
-
-
-
 class my_menu_class extends Walker_Nav_Menu {
 
 }
-
-add_image_size('employee_image', 361, 489, 1);
 
 
 // Волшебный AJAX

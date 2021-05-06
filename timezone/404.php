@@ -2,9 +2,8 @@
 /**
  * The template for displaying 404 pages (not found)
  *
- * @package WordPress
- * @subpackage Twenty_Nineteen
- * @since Twenty Nineteen 1.0
+ * @subpackage Tsn
+ * @since Tsn 1.0
  */
 
 get_header();

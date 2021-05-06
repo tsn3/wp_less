@@ -8,7 +8,7 @@
 			<div class="row">
 				<div class="col-xl-12">
 					<div class="hero-cap text-center">
-						<h2><?php _e( 'Новости' , 'rus')?></h2>
+						<h2><?php _e( 'Новости' , 'tsn')?></h2>
 					</div>
 				</div>
 			</div>
@@ -29,9 +29,8 @@
 							<?php get_template_part('content/post', get_post_type());?>
 						<?php endwhile; ?>
 					<?php else : ?>
-						<hr><?php _e('Ничего не найденно.', 'artjoker')?><hr>
+						<hr><?php _e('Ничего не найденно.', 'tsn')?><hr>
 					<?php endif; ?>
-
 
 					<nav class="blog-pagination justify-content-center d-flex">
 						<ul class="pagination">
@@ -57,13 +56,10 @@
 			</div>
 			<div class="col-lg-4">
 				<?php get_sidebar(); ?>
-
 			</div>
 		</div>
 	</div>
 </section>
 <!--================Blog Area =================-->
 </main>
-
-
 <?php get_footer(); ?>

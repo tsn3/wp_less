@@ -1,18 +1,16 @@
 <?php
 
-// Add custom post types
-// случайных сотрудника-- Преобразовать в список сотрудников. Заголовок - Наши сотрудники,
-// и отображено должно быть 3 случайных сотрудника-> Фото(размер должен соответствовать
-// размеру ячейки) и Фио сотрудника
-add_action( 'init', 'employee_register_post_type_init' ); // Использовать функцию только внутри хука init Добавить Сотрудника
+// Adding a list of employees, three displays at random on the Front-page
+add_action( 'init', 'employee_register_post_type_init' );
+// Use function only inside init hook Add Employee
 
 function employee_register_post_type_init()
 {
     $labels = array(
         'name' => 'Cотрудники',
-        'singular_name' => 'Cотрудники', // админ панель Добавить->Функцию
+        'singular_name' => 'Cотрудники', // admin panel Add-> Function
         'add_new' => 'Добавить cотрудника',
-        'add_new_item' => 'Добавить нового cотрудника', // заголовок тега <title>
+        'add_new_item' => 'Добавить нового cотрудника', // tag header <title>
         'edit_item' => 'Редактировать данные сотрудника',
         'new_item' => 'Новый сотрудник',
         'all_items' => 'Все сотрудник',
@@ -20,32 +18,31 @@ function employee_register_post_type_init()
         'search_items' => 'Искать сотрудника',
         'not_found' =>  'Такого сотрудника не существует!',
         'not_found_in_trash' => 'Не выбран сотрудник.',
-        'menu_name' => 'Cотрудники' // ссылка в меню в админке
+        'menu_name' => 'Cотрудники' // link of the menu in the admin panel
     );
 
     $args = array(
         'labels' => $labels,
         'public' => true,
-        'show_ui' => true, // показывать интерфейс в админке
+        'show_ui' => true, // show the interface in the admin area
         'has_archive' => true,
-        'menu_icon' => 'dashicons-edit-large', // иконка в меню
-        'menu_position' => 10, // порядок в меню
+        'menu_icon' => 'dashicons-edit-large', // menu icon
+        'menu_position' => 10, // order in the menu
         'supports' => array( 'title', 'editor', 'comments', 'author', 'thumbnail')
     );
 
     register_post_type('employee', $args);
 }
 
-
-
-add_action( 'init', 'news_register_post_type_init' ); // Использовать функцию только внутри хука init
+add_action( 'init', 'news_register_post_type_init' );
+// Use the function only inside the init hook
 function news_register_post_type_init()
 {
     $labels = array(
         'name' => 'Новости',
-        'singular_name' => 'Новость', // админ панель Добавить->Функцию
+        'singular_name' => 'Новость', // admin panel Add-> Function
         'add_new' => 'Добавить новость',
-        'add_new_item' => 'Добавить новую новость', // заголовок тега <title>
+        'add_new_item' => 'Добавить новую новость', // tag header <title>
         'edit_item' => 'Редактировать новость',
         'new_item' => 'Новая новость',
         'all_items' => 'Все новости',
@@ -53,16 +50,16 @@ function news_register_post_type_init()
         'search_items' => 'Искать новости',
         'not_found' =>  'Новостей не найдено !!!!!',
         'not_found_in_trash' => 'В корзине нет новостей.',
-        'menu_name' => 'Новости' // ссылка в меню в админке
+        'menu_name' => 'Новости' // link in the menu in the admin panel
     );
 
     $args = array(
         'labels' => $labels,
         'public' => true,
-        'show_ui' => true, // показывать интерфейс в админке
+        'show_ui' => true, // show the interface in the admin area
         'has_archive' => true,
-        'menu_icon' => 'dashicons-edit-large', // иконка в меню
-        'menu_position' => 20, // порядок в меню
+        'menu_icon' => 'dashicons-edit-large', // menu icon
+        'menu_position' => 20, // order in the menu
         'supports' => array( 'title', 'editor', 'comments', 'author', 'thumbnail')
     );
 
@@ -70,16 +67,17 @@ function news_register_post_type_init()
 
 }
 
-add_image_size('post_preview', 555, 280, 1);
+    //image_size
+add_image_size('employee_image', 361, 489, 1);
+add_image_size( 'popular-image', 361, 380, 1);
 add_image_size('post_image', 750, 375, 1);
-add_image_size('avatar', 361, 489, 1);
 
 
-// add JS and CSS
+    // add JS and CSS
 add_action( 'wp_enqueue_scripts', 'theme_name_scripts');
 
 function theme_name_scripts() {
-//    HERE CSS
+    //    HERE CSS
 	wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css');
     wp_enqueue_style( 'carousel', get_template_directory_uri() . '/assets/css/owl.carousel.min.css');
     wp_enqueue_style( 'flaticon', get_template_directory_uri() . '/assets/css/flaticon.css');
@@ -117,8 +115,8 @@ function theme_name_scripts() {
 }
 
 
-//Страница контакты
-// (6 полей справа от формы обратной связи)
+//Contact page
+//Adding 6 fields to the right of the feedback form on the Contacts page, filled in the admin part
 add_action('admin_menu',
     function() {
         add_menu_page( 'Контакты', 'Контакты', 'manage_options', 'contact_page', 'get_contact_page' );
@@ -126,7 +124,7 @@ add_action('admin_menu',
 );
 
 function get_contact_page() {
-    // Сохранение настроек
+	//Saving settings
     if ($_POST) {
         update_option('tsn_address', stripslashes($_POST['address']));
         update_option('tsn_post_address', stripslashes($_POST['post_address']));
@@ -164,7 +162,8 @@ function get_contact_page() {
             <p class="submit">
                 <input type="submit" class="button button-primary button-large" value="Save" />
             </p>
+
         </form>
     </div>
 <?php }
-//Страница контакты конец
+//Contact page end
