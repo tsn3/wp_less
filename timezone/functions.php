@@ -9,7 +9,6 @@ require get_template_directory() . '/functions-css.php';
 add_action( 'after_setup_theme', function() {
     add_theme_support('title-tag');
 	add_theme_support( 'post-thumbnails', array( 'post' ) );
-//    add_theme_support('woocommerce');
     add_theme_support('html5');
 
 	add_theme_support( 'custom-logo', array(
@@ -67,7 +66,7 @@ class my_menu_class extends Walker_Nav_Menu {
 }
 
 
-// Волшебный AJAX
+// AJAX
 add_action( 'wp_ajax_contact', 'magicAjax' );
 add_action( 'wp_ajax_nopriv_contact', 'magicAjax' );
 //add_action( 'wp_ajax_{action}', 'magicAjax' );
@@ -113,46 +112,46 @@ function magicAjax2() {
 }
 
 
-function get_gallery( $id )
-{
-    // Simple query
-    $posts = get_posts( array(
-        'category' => $id,
-        'post_status' => 'publish',
-        'post_type' => 'post',
-    ) );
+add_action('block_meta', function() { ?>
+    <li><a href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>"><?php the_author(); ?><i class="lnr lnr-user"></i></a></li>
+<?php });
 
-    // Start building the Html code
-    $slide_show = '
-        <div id="slide-show">
-            <ul>';
-
-    // Iterate through the results
-    foreach ( $posts as $post )
-    {
-        // Assign value and test if it exists at the *same time*
-        if( $thumb = get_post_thumbnail_id( $post->ID ) )
-        {
-            $permalink = get_permalink( $post->ID );
-            $image = wp_get_attachment_image_src( $thumb );
-
-            // Build the Html elements
-            $slide_show .= '
-                <li>
-                    <a href="' . $permalink . '">
-                    <img src="'. $image[0] . '" alt="' . $post->post_title .'" />
-                    </a>
-                </li>';
-        }
-    }
-
-    // Finish the Html
-    $slide_show .= '
-            </ul>
-        </div>
-    ';
-
-    // Print the Html
-    echo $slide_show;
+function my_get_date() {
+	echo '<li><a href="#">';
+	the_date();
+	echo '<i class="lnr lnr-calendar-full"></i></a></li>';
 }
 
+add_action('block_meta', 'my_get_date');
+
+add_action('block_meta', function() {
+	echo '<li><a href="#">';
+	do_action('get_views');
+	echo ' Views<i class="lnr lnr-eye"></i></a></li>';
+});
+
+add_action('block_meta', function() {
+	$num_comments = get_comments_number();
+	if ( $num_comments == 0 ) {
+		$comments = __('No Comments');
+	} elseif ( $num_comments > 1 ) {
+		$comments = $num_comments . __(' Comments');
+	} else {
+		$comments = __('1 Comment');
+	}
+
+	if (is_user_logged_in()) {
+		echo '<li><a href="#">'.$comments.'<i class="lnr lnr-bubble"></i></a></li>';
+	}
+});
+
+add_action('get_views', function() {
+	$views = (int)get_post_meta(get_the_ID(), 'views', true);
+
+	if (is_single()) {
+		$views++;
+		update_post_meta(get_the_ID(), 'views', $views);
+	}
+
+	echo $views;
+});

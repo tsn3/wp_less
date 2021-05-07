@@ -39,7 +39,6 @@
 	<?php
 	$employes = new WP_Query ('post_type=employee&posts_per_page=3&orderby=rand');
 	?>
-
 	<?php if ($employes->have_posts() ){ ?>
         <section class="new-product-area section-padding30">
             <div class="container">
@@ -88,12 +87,11 @@
         </div>
     </div>
     <!-- Gallery Area End -->
-    <!--? Popular Items Start -->
 
+    <!--? Popular Items Start -->
 	<?php
 	$popular = new WP_Query ('post_type=(post&news)&posts_per_page=6&orderby=rand');
 	?>
-
 	<?php if ($popular) { ?>
         <div class="popular-items section-padding30">
             <div class="container">

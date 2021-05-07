@@ -1,5 +1,5 @@
 <?php /* Template name: Contact */ ?>
-<?php get_header(); ?>
+<?php get_header(); the_post(); ?>
 <main>
     <!--? Hero Area Start-->
     <div class="slider-area ">

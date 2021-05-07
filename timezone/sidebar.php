@@ -2,146 +2,67 @@
         <form action=<?php echo home_url(); ?>" method="GET">
             <div class="form-group">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="<?php _e("Search Keyword", 'tsn'); ?>"
+                    <input type="text" class="form-control" placeholder="<?php _e("Поиск по ключевому слову", 'tsn'); ?>"
                            onfocus="this.placeholder = ''"
-                           onblur="this.placeholder = 'Search Keyword'">
+                           onblur="this.placeholder = 'Поиск по ключевому слову'">
                     <div class="input-group-append">
                         <button class="btns" type="button"><i class="ti-search"></i></button>
                     </div>
                 </div>
             </div>
             <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
-                    type="submit">Search</button>
+                    type="submit"><?php _e('Поиск', 'rus');  ?></button>
         </form>
     </aside>
 
     <aside class="single_sidebar_widget post_category_widget">
-        <h4 class="widget_title">Category</h4>
+        <h4 class="widget_title"><?php _e('Категория', 'tsn');  ?></h4>
         <ul class="list cat-list">
-            <li>
-                <a href="#" class="d-flex">
-                    <p>Resaurant food</p>
-                    <p>(37)</p>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="d-flex">
-                    <p>Travel news</p>
-                    <p>(10)</p>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="d-flex">
-                    <p>Modern technology</p>
-                    <p>(03)</p>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="d-flex">
-                    <p>Product</p>
-                    <p>(11)</p>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="d-flex">
-                    <p>Inspiration</p>
-                    <p>21</p>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="d-flex">
-                    <p>Health Care (21)</p>
-                    <p>09</p>
-                </a>
-            </li>
+            <p>
+                // todo
+            </p>
         </ul>
     </aside>
 
     <aside class="single_sidebar_widget popular_post_widget">
-        <h3 class="widget_title">Recent Post</h3>
-        <div class="media post_item">
-            <img src="assets/img/post/post_1.png" alt="post">
-            <div class="media-body">
-                <a href="single-blog.html">
-                    <h3>From life was you fish...</h3>
-                </a>
-                <p>January 12, 2019</p>
+	    <?php $populargb = new WP_Query('showposts=4&meta_key=post_views_count&orderby=meta_value_num' );
+	    while ( $populargb->have_posts() ) { $populargb->the_post(); ?>
+            <h3 class="widget_title"><?php _e('Популярные статьи', 'tsn');  ?></h3>
+            <div class="media post_item">
+	            <?php if(get_the_post_thumbnail_url()): ?>
+                    <img src="<?php echo get_the_post_thumbnail_url( get_the_ID(), 'sidebar-image' );?>" alt="<?php the_title(); ?>">
+	            <?php else: ?>
+                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/nothing-abandoned-1.jpg" alt="<?php the_title(); ?>">
+	            <?php endif; ?>
+
+                <div class="media-body">
+
+                    <a href="<?php the_permalink(); ?>">
+			            <?php the_title('<h3>', '</h3>'); ?>
+                    </a>
+                    <p><?php the_time('F jS, Y'); ?></p>
+                </div>
+
+
+                <div class="mail"><?php the_post_thumbnail(); ?></div>
+                <a title="<?php the_title(); ?>" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+
+
             </div>
-        </div>
-        <div class="media post_item">
-            <img src="assets/img/post/post_2.png" alt="post">
-            <div class="media-body">
-                <a href="single-blog.html">
-                    <h3>The Amazing Hubble</h3>
-                </a>
-                <p>02 Hours ago</p>
-            </div>
-        </div>
-        <div class="media post_item">
-            <img src="assets/img/post/post_3.png" alt="post">
-            <div class="media-body">
-                <a href="single-blog.html">
-                    <h3>Astronomy Or Astrology</h3>
-                </a>
-                <p>03 Hours ago</p>
-            </div>
-        </div>
-        <div class="media post_item">
-            <img src="assets/img/post/post_4.png" alt="post">
-            <div class="media-body">
-                <a href="single-blog.html">
-                    <h3>Asteroids telescope</h3>
-                </a>
-                <p>01 Hours ago</p>
-            </div>
-        </div>
+
+	    <?php } ?>
+
+
     </aside>
     <aside class="single_sidebar_widget tag_cloud_widget">
-        <h4 class="widget_title">Tag Clouds</h4>
+
+        <h4 class="widget_title"><?php _e('Облако популярных тегов', 'tsn');?></h4>
         <ul class="list">
             <li>
-                <a href="#">project</a>
-            </li>
-            <li>
-                <a href="#">love</a>
-            </li>
-            <li>
-                <a href="#">technology</a>
-            </li>
-            <li>
-                <a href="#">travel</a>
-            </li>
-            <li>
-                <a href="#">restaurant</a>
-            </li>
-            <li>
-                <a href="#">life style</a>
-            </li>
-            <li>
-                <a href="#">design</a>
-            </li>
-            <li>
-                <a href="#">illustration</a>
+	            <?php wp_tag_cloud('smallest=15&largest=40&number=20&orderby=count'); ?>
+                <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
             </li>
         </ul>
     </aside>
 
     <?php dynamic_sidebar('right_sidebar')?>
-
-
-    <aside class="single_sidebar_widget instagram_feeds">
-    </aside>
-
-
-    <aside class="single_sidebar_widget newsletter_widget">
-        <h4 class="widget_title">Newsletter</h4>
-
-        <form action="#">
-            <div class="form-group">
-                <input type="email" class="form-control" onfocus="this.placeholder = ''"
-                       onblur="this.placeholder = 'Enter email'" placeholder='Enter email' required>
-            </div>
-            <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
-                    type="submit">Subscribe</button>
-        </form>
-    </aside>

@@ -8,7 +8,7 @@
 			<div class="row">
 				<div class="col-xl-12">
 					<div class="hero-cap text-center">
-						<h2><?php _e( 'Новости' , 'tsn')?></h2>
+						<h2><?php single_post_title(); ?> </h2>
 					</div>
 				</div>
 			</div>
@@ -28,30 +28,13 @@
 							<?php the_post(); ?>
 							<?php get_template_part('content/post', get_post_type());?>
 						<?php endwhile; ?>
+
+                        <!-- Pagination -->
+						<?php the_posts_pagination(); ?>
 					<?php else : ?>
 						<hr><?php _e('Ничего не найденно.', 'tsn')?><hr>
 					<?php endif; ?>
 
-					<nav class="blog-pagination justify-content-center d-flex">
-						<ul class="pagination">
-							<li class="page-item">
-								<a href="#" class="page-link" aria-label="Previous">
-									<i class="ti-angle-left"></i>
-								</a>
-							</li>
-							<li class="page-item">
-								<a href="#" class="page-link">1</a>
-							</li>
-							<li class="page-item active">
-								<a href="#" class="page-link">2</a>
-							</li>
-							<li class="page-item">
-								<a href="#" class="page-link" aria-label="Next">
-									<i class="ti-angle-right"></i>
-								</a>
-							</li>
-						</ul>
-					</nav>
 				</div>
 			</div>
 			<div class="col-lg-4">

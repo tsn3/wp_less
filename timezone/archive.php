@@ -15,35 +15,33 @@
             </div>
         </div>
         <!--? Hero Area End-->
+
         <!--================Blog Area =================-->
         <section class="blog_area section-padding">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 mb-5 mb-lg-0">
                         <div class="blog_left_sidebar">
-		                    <?php if (have_posts() ){while (have_posts() ){ the_post(); ?>
-			                    <?php get_template_part('content/post', get_post_type());?>
-
-			                    <?php }  //конец while ?>
+                            <?php if(have_posts()): ?>
+                                <?php while(have_posts()): ?>
+                                    <?php the_post(); ?>
+                                    <?php get_template_part('content/post', get_post_type());?>
+                                <?php endwhile; ?>
 
                                 <!-- Pagination -->
-			                    <?php the_posts_pagination(); ?>
+	                            <?php the_posts_pagination(); ?>
 
-			                <?php } //конец if
-		                    else {
-			                    echo "<h2><?php _e('Ничего не найденно.', 'tsn')?></h2>";
-		                    }
-		                    ?>
+                            <?php else : ?>
+                                <hr><?php _e('Ничего не найдено.', 'tsn')?><hr>
+                            <?php endif; ?>
                         </div>
                     </div>
                     <div class="col-lg-4">
-                        <div class="blog_right_sidebar">
-	                        <?php get_sidebar(); ?>
-                        </div>
+                        <?php get_sidebar(); ?>
                     </div>
                 </div>
             </div>
         </section>
-        <!--================Blog Area =================-->
+    <!--================Blog Area =================-->
     </main>
 <?php get_footer(); ?>

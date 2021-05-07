@@ -20,7 +20,6 @@ function employee_register_post_type_init()
         'not_found_in_trash' => 'Не выбран сотрудник.',
         'menu_name' => 'Cотрудники' // link of the menu in the admin panel
     );
-
     $args = array(
         'labels' => $labels,
         'public' => true,
@@ -52,7 +51,6 @@ function news_register_post_type_init()
         'not_found_in_trash' => 'В корзине нет новостей.',
         'menu_name' => 'Новости' // link in the menu in the admin panel
     );
-
     $args = array(
         'labels' => $labels,
         'public' => true,
@@ -70,6 +68,7 @@ function news_register_post_type_init()
     //image_size
 add_image_size('employee_image', 361, 489, 1);
 add_image_size( 'popular-image', 361, 380, 1);
+add_image_size( 'sidebar-image', 40, 40, 1);
 add_image_size('post_image', 750, 375, 1);
 
 
