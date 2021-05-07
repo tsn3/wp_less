@@ -11,7 +11,7 @@
                 </div>
             </div>
             <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
-                    type="submit"><?php _e('Поиск', 'rus');  ?></button>
+                    type="submit"><?php _e('Поиск', 'tsn');  ?></button>
         </form>
     </aside>
 
