@@ -6,6 +6,7 @@
 // CSS and JS
 require get_template_directory() . '/functions-css.php';
 
+
 add_action( 'after_setup_theme', function() {
     add_theme_support('title-tag');
 	add_theme_support( 'post-thumbnails', array( 'post' ) );
@@ -45,6 +46,7 @@ add_action( 'after_setup_theme', function() {
 
 });
 
+
 // Add sidebars in Block
 add_action( 'widgets_init', 'register_my_widgets' );
 
@@ -64,6 +66,19 @@ function register_my_widgets()
 class my_menu_class extends Walker_Nav_Menu {
 
 }
+function count_post_visits() {
+	if( is_single() ) {
+		global $post;
+		$views = get_post_meta( $post->ID, 'my_post_viewed', true );
+		if( $views == '' ) {
+			update_post_meta( $post->ID, 'my_post_viewed', '1' );
+		} else {
+			$views_no = intval( $views );
+			update_post_meta( $post->ID, 'my_post_viewed', ++$views_no );
+		}
+	}
+}
+add_action( 'wp_head', 'count_post_visits' );
 
 
 // AJAX
@@ -155,3 +170,22 @@ add_action('get_views', function() {
 
 	echo $views;
 });
+
+
+//
+//function get_random_categories( $number, $args = null ) {
+//	$categories = get_categories( $args ); // Get all the categories, optionally with additional arguments
+//
+//	// If there aren't enough categories, use as many as possible to avoid an error
+//	if( $number > count( $categories ) )
+//		$number = count( $categories );
+//
+//	// If no categories are available or none were requested, return an empty array
+//	if( $number === 0 )
+//		return array();
+//
+//	shuffle( $categories ); // Mix up the category array randomly
+//
+//	// Return the first $number categories from the shuffled list
+//	return array_slice( $categories, 0, $number );
+//}

@@ -8,7 +8,7 @@
 			<?php
 		} ?>
 
-        <a href="<?php the_permalink(); ?>" class="blog_item_date">
+        <a href="<?php the_permalink(); ?>" class="blog_item_date" id="news_post">
             <h3><?php the_time('F'); ?></h3>
             <p><?php the_time('jS'); ?></p>
         </a>

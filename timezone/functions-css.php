@@ -63,6 +63,28 @@ function news_register_post_type_init()
 
 	register_post_type('news', $args);
 
+	register_taxonomy('category_news', array('news'), array(
+		'hierarchical'  => true,
+		'labels'        => array(
+			'name'              => 'Категория новостей',
+			'singular_name'     => 'Категория новостей',
+			'search_items'      => 'Найти новости',
+			'all_items'         => 'Все новости',
+			'view_item '        => 'Смотреть новости',
+			'parent_item'       => 'Родительская новость',
+			'parent_item_colon' => 'Родительский новость:',
+			'edit_item'         => 'Изменить новость',
+			'update_item'       => 'Обновить новость',
+			'add_new_item'      => 'Добавить новость',
+			'new_item_name'     => 'Новое имя новости',
+			'menu_name'         => 'Категория новостей'
+
+		),
+		'show_ui'       => true,
+		'query_var'     => true,
+		//'rewrite'       => array( 'slug' => 'the_genre' ), // свой слаг в URL
+	));
+
 }
 
     //image_size
