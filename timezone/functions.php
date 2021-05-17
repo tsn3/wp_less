@@ -4,7 +4,7 @@
  * Include required files.
  */
 // CSS and JS
-require get_template_directory() . '/functions-css.php';
+require get_template_directory() . '/inc/functions-css.php';
 
 
 add_action( 'after_setup_theme', function() {
@@ -105,7 +105,7 @@ function magicAjax2() {
     <?php if ($data->have_posts()): ?>
         <?php while($data->have_posts()): ?>
             <?php $data->the_post(); ?>
-            <?php get_template_part('content/post', get_post_type());?>
+            <?php get_template_part('template-parts/content/post', get_post_type());?>
         <?php endwhile; ?>
     <?php else : ?>
         <hr><?php _e('Ничего не найденно.', 'tsn')?><hr>

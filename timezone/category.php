@@ -21,19 +21,20 @@
                 <div class="row">
                     <div class="col-lg-8 mb-5 mb-lg-0">
                         <div class="blog_left_sidebar">
-		                    <?php if (have_posts() ){while (have_posts() ){ the_post(); ?>
-			                    <?php get_template_part('content/post', get_post_type());?>
-
-			                    <?php }  //конец while ?>
+	                        <?php if (have_posts() ): ?>
+		                        <?php while(have_posts()): ?>
+			                        <?php the_post(); ?>
+			                        <?php get_template_part('template-parts/content/post', get_post_type());?>
+		                        <?php endwhile; ?>
+                                <!-- конец while -->
 
                                 <!-- Pagination -->
-			                    <?php the_posts_pagination(); ?>
+		                        <?php the_posts_pagination(); ?>
 
-			                <?php } //конец if
-		                    else {
-			                    echo "<h2><?php _e('Ничего не найденно.', 'tsn')?></h2>";
-		                    }
-		                    ?>
+	                        <?php else : ?>
+                                <hr><?php _e('Ничего не найдено.', 'tsn')?><hr>
+	                        <?php endif; ?>
+                            <!-- конец if -->
                         </div>
                     </div>
                     <div class="col-lg-4">

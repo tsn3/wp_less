@@ -26,7 +26,7 @@
 					<?php if(have_posts()): ?>
 						<?php while(have_posts()): ?>
 							<?php the_post(); ?>
-							<?php get_template_part('content/post', get_post_type());?>
+							<?php get_template_part('template-parts/content/post', get_post_type());?>
 						<?php endwhile; ?>
 
                         <!-- Pagination -->

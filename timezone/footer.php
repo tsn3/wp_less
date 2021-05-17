@@ -5,43 +5,15 @@
             <div class="row d-flex justify-content-between">
                 <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6">
                     <div class="single-footer-caption mb-50">
-                        <div class="single-footer-caption mb-30">
-                            <!-- logo -->
-                            <div class="footer-logo">
-	                            <?php
-	                            if (get_custom_logo()) {
-		                            the_custom_logo();
-	                            } else {
-		                            ?>
-                                    <div class="logo">
-                                        <a href="<?php echo get_site_url(); ?>"><img src="<?php echo get_template_directory_uri() ?>/assets/img/logo/logo2_footer.png" alt=""></a>
-                                    </div>
-		                            <?php
-	                            }
-	                            ?>
-                            </div>
-                            <div class="footer-tittle">
-                                <div class="footer-pera">
-                                    <p><?php _e('Место для статического слогана', 'tsn');?></p>
-                                </div>
-                            </div>
-                        </div>
+                        <!-- logo and tagline-->
+	                    <?php get_template_part( 'template-parts/footer/site-branding' ); ?>
                     </div>
                 </div>
 
                 <div class="col-xl-2 col-lg-1 col-md-1 col-sm-5">
                     <div class="single-footer-caption mb-50">
-
-                        <div class="footer-tittle">
-	                        <?php wp_nav_menu( array(
-		                        'theme_location' => 'footer-menu',
-		                        'container'       => 'div',
-		                        'menu_id'         => 'navigation',
-                                'menu_class'      => 'single-footer-caption mb-50',
-		                        'depth' => 1,
-		                        'walker' => new my_menu_class()
-	                        ) ); ?>
-                        </div>
+                        <!-- Footer-menu -->
+	                    <?php get_template_part( 'template-parts/footer/site-nav' ); ?>
                     </div>
                 </div>
             </div>
