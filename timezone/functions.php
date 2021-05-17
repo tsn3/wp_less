@@ -87,8 +87,8 @@ add_action( 'wp_ajax_nopriv_contact', 'magicAjax' );
 //add_action( 'wp_ajax_{action}', 'magicAjax' );
 
 function magicAjax() {
-//    $status = wp_mail(get_option('admin_email'), __('Контакты'), print_r($_POST, 1));
-    $status = wp_mail('tsn3ps@gmail.com', __('Контакты'), print_r($_POST, 1));
+    $status = wp_mail(get_option('admin_email'), __('Контакты'), print_r($_POST, 1));
+//    $status = wp_mail('tsn3ps@gmail.com', __('Контакты'), print_r($_POST, 1));
 
     wp_send_json(array('status' => $status));
 }
@@ -142,7 +142,7 @@ add_action('block_meta', 'my_get_date');
 add_action('block_meta', function() {
 	echo '<li><a href="#">';
 	do_action('get_views');
-	echo ' Views<i class="lnr lnr-eye"></i></a></li>';
+	echo _e('Просмотров', 'tsn');'<i class="lnr lnr-eye"></i></a></li>';
 });
 
 add_action('block_meta', function() {

@@ -16,7 +16,7 @@
     <!-- Button -->
     <div class="row justify-content-center">
         <div class="room-btn pt-70">
-            <a href=<?php echo get_home_url( '', 'blog', 'http' ); ?>" class="btn view-btn1">
+            <a href=<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>" class="btn view-btn1">
 			<?php _e('Посмотреть больше сообщений' , 'tsn'); ?>
             </a>
         </div>

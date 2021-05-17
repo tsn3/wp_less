@@ -25,7 +25,7 @@ $employes = new WP_Query ('post_type=employee&posts_per_page=3&orderby=rand');
 								<?php } ?>
 							</div>
 							<div class="product-caption">
-								<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+								<h3><?php the_title(); ?></h3>
 							</div>
 						</div>
 					</div>

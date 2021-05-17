@@ -56,22 +56,22 @@
                     <div class="media contact-info">
                         <span class="contact-info__icon"><i class="ti-home"></i></span>
                         <div class="media-body">
-                            <h3><?php echo get_option('test_address'); ?></h3>
-                            <p><?php echo get_option('test_post_address'); ?></p>
+                            <h3><?php echo get_option('tsn_address'); ?></h3>
+                            <p><?php echo get_option('tsn_post_address'); ?></p>
                         </div>
                     </div>
                     <div class="media contact-info">
                         <span class="contact-info__icon"><i class="ti-tablet"></i></span>
                         <div class="media-body">
-                            <h3><?php echo get_option('test_phone'); ?></h3>
-                            <p><?php echo get_option('test_time_job'); ?></p>
+                            <h3><?php echo get_option('tsn_phone'); ?></h3>
+                            <p><?php echo get_option('tsn_time_job'); ?></p>
                         </div>
                     </div>
                     <div class="media contact-info">
                         <span class="contact-info__icon"><i class="ti-email"></i></span>
                         <div class="media-body">
-                            <h3><?php echo get_option('test_email'); ?></h3>
-                            <p><?php echo get_option('test_text'); ?></p>
+                            <h3><?php echo get_option('tsn_email'); ?></h3>
+                            <p><?php echo get_option('tsn_text'); ?></p>
                         </div>
                     </div>
                 </div>

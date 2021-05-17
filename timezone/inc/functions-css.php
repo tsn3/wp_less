@@ -82,7 +82,6 @@ function news_register_post_type_init()
 		),
 		'show_ui'       => true,
 		'query_var'     => true,
-		//'rewrite'       => array( 'slug' => 'the_genre' ), // свой слаг в URL
 	));
 
 }
@@ -138,8 +137,7 @@ function theme_name_scripts() {
 
 //Contact page
 //Adding 6 fields to the right of the feedback form on the Contacts page, filled in the admin part
-add_action('admin_menu',
-    function() {
+add_action('admin_menu', function() {
         add_menu_page( 'Контакты', 'Контакты', 'manage_options', 'contact_page', 'get_contact_page' );
     }
 );
@@ -153,8 +151,7 @@ function get_contact_page() {
         update_option('tsn_time_job', stripslashes($_POST['time_job']));
         update_option('tsn_email', stripslashes($_POST['email']));
         update_option('tsn_text', stripslashes($_POST['text']));
-
-        echo '<div id="message" class="updated fade"><p><strong>Успешно сохраненно</strong></p></div>';
+        echo '<div id="message" class="updated fade"><p><strong>'._e('Успешно сохраненно', 'tsn');'.</strong></p></div>';
     }
     ?>
     <div class="wrap">
@@ -181,7 +178,7 @@ function get_contact_page() {
             </label>
 
             <p class="submit">
-                <input type="submit" class="button button-primary button-large" value="Save" />
+                <input type="submit" class="button button-primary button-large" value="<?php _e('Сохранить', 'tsn'); ?>" />
             </p>
 
         </form>
