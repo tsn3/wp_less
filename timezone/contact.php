@@ -24,7 +24,7 @@
                         <h2 class="contact-title"><?php _e('Связаться', 'tsn'); ?></h2>
                     </div>
                     <div class="col-lg-8">
-                        <form class="form-contact contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+                        <form class="form-contact contact_form" action="<?php bloginfo('template_url'); ?>/contact_process.php" method="post" id="contactForm" novalidate="novalidate">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
