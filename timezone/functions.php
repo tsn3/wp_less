@@ -20,9 +20,9 @@ add_action( 'after_setup_theme', function() {
 	) );
 
     register_nav_menus(array(
-            'primary-menu' => 'Главное меню',
-            'footer-menu' => 'Подвальное меню',
-            'mobile-menu' => 'Мобильное меню',
+            'primary-menu' => __('Главное меню', 'tsn'),
+            'footer-menu' => __('Подвальное меню', 'tsn'),
+            'mobile-menu' => __('Мобильное меню', 'tsn'),
         )
     );
 
@@ -56,7 +56,7 @@ function register_my_widgets()
     register_sidebar( array(
         'name'          => 'Right Sidebar',
         'id'            => "right_sidebar",
-        'description'   => 'Описание нашего сайдбара',
+        'description'   => __('Описание нашего сайдбара', 'tsn'),
         'before_widget' => '<div class="widget %2$s">',
         'after_widget'  => "</div>\n",
         'before_title'  => '<h5 class="widgettitle">',
@@ -153,7 +153,7 @@ function magicAjax2() {
 			<?php get_template_part('template-parts/content/post', get_post_type());?>
 		<?php endwhile; ?>
 	<?php else : ?>
-        <hr><?php _e('Ничего не найденно.', 'tsn')?><hr>
+        <hr><?php _e('Ничего не найдено.', 'tsn')?><hr>
 	<?php endif; ?>
 
 	<?php wp_reset_postdata(); ?>

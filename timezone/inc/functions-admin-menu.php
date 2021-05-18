@@ -13,18 +13,18 @@ add_action( 'init', 'employee_register_post_type_init' );
 function employee_register_post_type_init()
 {
 	$labels = array(
-		'name' => 'Cотрудники',
-		'singular_name' => 'Cотрудники', // admin panel Add-> Function
-		'add_new' => 'Добавить cотрудника',
-		'add_new_item' => 'Добавить нового cотрудника', // tag header <title>
-		'edit_item' => 'Редактировать данные сотрудника',
-		'new_item' => 'Новый сотрудник',
-		'all_items' => 'Все сотрудник',
-		'view_item' => 'Просмотр сотрудника на сайте',
-		'search_items' => 'Искать сотрудника',
-		'not_found' =>  'Такого сотрудника не существует!',
-		'not_found_in_trash' => 'Не выбран сотрудник.',
-		'menu_name' => 'Cотрудники' // link of the menu in the admin panel
+		'name' => __('Cотрудники', 'tsn'),
+		'singular_name' => __('Cотрудники', 'tsn'), // admin panel Add-> Function
+		'add_new' => __('Добавить cотрудника', 'tsn'),
+		'add_new_item' => __('Добавить нового cотрудника', 'tsn'),// tag header <title>
+		'edit_item' => __('Редактировать данные сотрудника', 'tsn'),
+		'new_item' => __('Новый сотрудник', 'tsn'),
+		'all_items' => __('Все сотрудники', 'tsn'),
+		'view_item' => __('Просмотр сотрудника на сайте', 'tsn'),
+		'search_items' => __('Искать сотрудника', 'tsn'),
+		'not_found' => __('Такого сотрудника не существует!', 'tsn'),
+		'not_found_in_trash' => __('Не выбран сотрудник.', 'tsn'),
+		'menu_name' => __('Cотрудники', 'tsn') // link of the menu in the admin panel
 	);
 	$args = array(
 		'labels' => $labels,
@@ -44,18 +44,18 @@ add_action( 'init', 'news_register_post_type_init' );
 function news_register_post_type_init()
 {
 	$labels = array(
-		'name' => 'Новости',
-		'singular_name' => 'Новость', // admin panel Add-> Function
-		'add_new' => 'Добавить новость',
-		'add_new_item' => 'Добавить новую новость', // tag header <title>
-		'edit_item' => 'Редактировать новость',
-		'new_item' => 'Новая новость',
-		'all_items' => 'Все новости',
-		'view_item' => 'Просмотр новостей на сайте',
-		'search_items' => 'Искать новости',
-		'not_found' =>  'Новостей не найдено !!!!!',
-		'not_found_in_trash' => 'В корзине нет новостей.',
-		'menu_name' => 'Новости' // link in the menu in the admin panel
+		'name' => __('Новости', 'tsn'),
+		'singular_name' => __('Новость', 'tsn'), // admin panel Add-> Function
+		'add_new' => __('Добавить новость', 'tsn'),
+		'add_new_item' => __('Добавить новую новость', 'tsn'), // tag header <title>
+		'edit_item' => __('Редактировать новость', 'tsn'),
+		'new_item' => __('Новая новость', 'tsn'),
+		'all_items' => __('Все новости', 'tsn'),
+		'view_item' => __('Просмотр новостей на сайте', 'tsn'),
+		'search_items' => __('Искать новости', 'tsn'),
+		'not_found' =>  __('Новостей не найдено !!!!!', 'tsn'),
+		'not_found_in_trash' => __('В корзине нет новостей.', 'tsn'),
+		'menu_name' => __('Новости', 'tsn') // link in the menu in the admin panel
 	);
 	$args = array(
 		'labels' => $labels,
@@ -72,18 +72,18 @@ function news_register_post_type_init()
 	register_taxonomy('category_news', array('news'), array(
 		'hierarchical'  => true,
 		'labels'        => array(
-			'name'              => 'Категория новостей',
-			'singular_name'     => 'Категория новостей',
-			'search_items'      => 'Найти новости',
-			'all_items'         => 'Все новости',
-			'view_item '        => 'Смотреть новости',
-			'parent_item'       => 'Родительская новость',
-			'parent_item_colon' => 'Родительский новость:',
-			'edit_item'         => 'Изменить новость',
-			'update_item'       => 'Обновить новость',
-			'add_new_item'      => 'Добавить новость',
-			'new_item_name'     => 'Новое имя новости',
-			'menu_name'         => 'Категория новостей'
+			'name'              => __('Категория новостей', 'tsn'),
+			'singular_name'     => __('Категория новостей', 'tsn'),
+			'search_items'      => __('Найти новости', 'tsn'),
+			'all_items'         => __('Все новости', 'tsn'),
+			'view_item '        => __('Смотреть новости', 'tsn'),
+			'parent_item'       => __('Родительская новость', 'tsn'),
+			'parent_item_colon' => __('Родительская новость:', 'tsn'),
+			'edit_item'         => __('Изменить новость', 'tsn'),
+			'update_item'       => __('Обновить новость', 'tsn'),
+			'add_new_item'      => __('Добавить новость', 'tsn'),
+			'new_item_name'     => __('Новое имя новости', 'tsn'),
+			'menu_name'         => __('Категория новостей', 'tsn')
 
 		),
 		'show_ui'       => true,
@@ -95,7 +95,7 @@ function news_register_post_type_init()
 //Contact page
 //Adding 6 fields to the right of the feedback form on the Contacts page, filled in the admin part
 add_action('admin_menu', function() {
-	add_menu_page( 'Контакты', 'Контакты', 'manage_options', 'contact_page', 'get_contact_page' );
+	add_menu_page( __('Контакты', 'tsn'), __('Контакты', 'tsn'),'manage_options', 'contact_page', 'get_contact_page' );
 }
 );
 
