@@ -4,8 +4,10 @@
  * Include required files.
  */
 // CSS and JS
-require get_template_directory() . '/inc/functions-css.php';
+require get_template_directory() . '/inc/functions-scripts.php';
 
+// Admin Menu
+require get_template_directory() . '/inc/functions-admin-menu.php';
 
 add_action( 'after_setup_theme', function() {
     add_theme_support('title-tag');
@@ -27,7 +29,7 @@ add_action( 'after_setup_theme', function() {
 	add_filter( 'excerpt_more', 'new_excerpt_more' );
 	function new_excerpt_more( $more ){
 		global $post;
-		return '<a href="'. get_permalink($post) . '">Читать дальше...</a>';
+		return '<a href="'. get_permalink($post) . '">'._e('Читать далее','tsn').'</a>';
 	}
 	// удаляет H2 из шаблона пагинации
 	add_filter('navigation_markup_template', 'my_navigation_template', 10, 2 );
@@ -45,7 +47,6 @@ add_action( 'after_setup_theme', function() {
 	) );
 
 });
-
 
 // Add sidebars in Block
 add_action( 'widgets_init', 'register_my_widgets' );
@@ -80,53 +81,6 @@ function count_post_visits() {
 }
 add_action( 'wp_head', 'count_post_visits' );
 
-
-// AJAX
-add_action( 'wp_ajax_contact', 'magicAjax' );
-add_action( 'wp_ajax_nopriv_contact', 'magicAjax' );
-//add_action( 'wp_ajax_{action}', 'magicAjax' );
-
-function magicAjax() {
-    $status = wp_mail(get_option('admin_email'), __('Контакты'), print_r($_POST, 1));
-//    $status = wp_mail('tsn3ps@gmail.com', __('Контакты'), print_r($_POST, 1));
-
-    wp_send_json(array('status' => $status));
-}
-
-add_action( 'wp_ajax_needmore', 'magicAjax2' );
-add_action( 'wp_ajax_nopriv_needmore', 'magicAjax2' );
-
-function magicAjax2() {
-    $data = new WP_Query('post_type=post&posts_per_page=1&orderby=rand');
-
-    ob_start();
-    ?>
-
-    <?php if ($data->have_posts()): ?>
-        <?php while($data->have_posts()): ?>
-            <?php $data->the_post(); ?>
-            <?php get_template_part('template-parts/content/post', get_post_type());?>
-        <?php endwhile; ?>
-    <?php else : ?>
-        <hr><?php _e('Ничего не найденно.', 'tsn')?><hr>
-    <?php endif; ?>
-
-    <?php wp_reset_postdata(); ?>
-
-    <?php
-
-    $content = ob_get_contents();
-    ob_clean();
-
-    wp_send_json(
-        array(
-            'status' => 1,
-            'content' => $content
-        )
-    );
-}
-
-
 add_action('block_meta', function() { ?>
     <li><a href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>"><?php the_author(); ?><i class="lnr lnr-user"></i></a></li>
 <?php });
@@ -142,7 +96,7 @@ add_action('block_meta', 'my_get_date');
 add_action('block_meta', function() {
 	echo '<li><a href="#">';
 	do_action('get_views');
-	echo _e('Просмотров', 'tsn');'<i class="lnr lnr-eye"></i></a></li>';
+	echo _e(' Просмотров', 'tsn');'<i class="lnr lnr-eye"></i></a></li>';
 });
 
 add_action('block_meta', function() {
@@ -172,20 +126,46 @@ add_action('get_views', function() {
 });
 
 
-//
-//function get_random_categories( $number, $args = null ) {
-//	$categories = get_categories( $args ); // Get all the categories, optionally with additional arguments
-//
-//	// If there aren't enough categories, use as many as possible to avoid an error
-//	if( $number > count( $categories ) )
-//		$number = count( $categories );
-//
-//	// If no categories are available or none were requested, return an empty array
-//	if( $number === 0 )
-//		return array();
-//
-//	shuffle( $categories ); // Mix up the category array randomly
-//
-//	// Return the first $number categories from the shuffled list
-//	return array_slice( $categories, 0, $number );
-//}
+// AJAX
+add_action( 'wp_ajax_contact', 'magicAjax' );
+add_action( 'wp_ajax_nopriv_contact', 'magicAjax' );
+//add_action( 'wp_ajax_{action}', 'magicAjax' );
+
+function magicAjax() {
+	$status = wp_mail(get_option('admin_email'), __('Контакты'), print_r($_POST, 1));
+//    $status = wp_mail('tsn3ps@gmail.com', __('Контакты'), print_r($_POST, 1));
+
+	wp_send_json(array('status' => $status));
+}
+
+add_action( 'wp_ajax_needmore', 'magicAjax2' );
+add_action( 'wp_ajax_nopriv_needmore', 'magicAjax2' );
+
+function magicAjax2() {
+	$data = new WP_Query('post_type=post&posts_per_page=1&orderby=rand');
+
+	ob_start();
+	?>
+
+	<?php if ($data->have_posts()): ?>
+		<?php while($data->have_posts()): ?>
+			<?php $data->the_post(); ?>
+			<?php get_template_part('template-parts/content/post', get_post_type());?>
+		<?php endwhile; ?>
+	<?php else : ?>
+        <hr><?php _e('Ничего не найденно.', 'tsn')?><hr>
+	<?php endif; ?>
+
+	<?php wp_reset_postdata(); ?>
+
+	<?php
+	$content = ob_get_contents();
+	ob_clean();
+
+	wp_send_json(
+		array(
+			'status' => 1,
+			'content' => $content
+		)
+	);
+}

@@ -1,45 +1,74 @@
-$('#contactForm').on("submit", function (e) {
-    e.preventDefault();
+$(document).ready(function() {
+    var form = $('#contactForm'); // contact form
+    var submit = $('.submit-btn'); // submit button
+    var alert = $('.alert-msg'); // alert div for show alert message
 
-    $.ajax({
-        url: ajaxPath,
-        // dataType: "json",
-        type: "POST",
-        data: $(this).serialize(),
-        success: function(res) {
-            if (res.status == 1) {
-                alert('Письмо отправленно');
-            } else{
-                alert('Письмо не ушло =(');
+    // form submit event
+    form.on('submit', function(e) {
+        e.preventDefault(); // prevent default form submit
+
+        $.ajax({
+            url: 'contact_process.php', // form action url
+            type: 'POST', // form submit method get/post
+            dataType: 'html', // request type html/json/xml
+            data: form.serialize(), // serialize form data
+            beforeSend: function() {
+                alert.fadeOut();
+                submit.html('Sending....'); // change submit button text
+            },
+            success: function(data) {
+                alert.html(data).fadeIn(); // fade in response data
+                form.trigger('reset'); // reset form
+                submit.attr("style", "display: none !important");; // reset submit button text
+            },
+            error: function(e) {
+                console.log(e)
             }
-        },
-        error: function () {
-            alert('Не взлетело');
-        }
+        });
     });
-
-    return false;
 });
-
-$('#my-custom-id').on("click", function (e) {
-    e.preventDefault();
-
-    $.ajax({
-        url: ajaxPath,
-        // dataType: "json",
-        type: "POST",
-        data: {
-            'action' : 'needmore'
-        },
-        success: function(res) {
-            if (res.status == 1) {
-                $('#my-custom-wrapper').before(res.content);
-            }
-        },
-        error: function () {
-            alert('Не взлетело');
-        }
-    });
-
-    return false;
-});
+// $('#contactForm').on("submit", function (e) {
+//     e.preventDefault();
+//
+//     $.ajax({
+//         url: ajaxPath,
+//         // dataType: "json",
+//         type: "POST",
+//         data: $(this).serialize(),
+//         success: function(res) {
+//             if (res.status == 1) {
+//                 alert('Письмо отправленно');
+//             } else{
+//                 alert('Письмо не ушло =(');
+//             }
+//         },
+//         error: function () {
+//             alert('Не взлетело');
+//         }
+//     });
+//
+//     return false;
+// });
+//
+// $('#my-custom-id').on("click", function (e) {
+//     e.preventDefault();
+//
+//     $.ajax({
+//         url: ajaxPath,
+//         // dataType: "json",
+//         type: "POST",
+//         data: {
+//             'action' : 'needmore'
+//         },
+//         success: function(res) {
+//             if (res.status == 1) {
+//                 $('#my-custom-wrapper').before(res.content);
+//             }
+//         },
+//         error: function () {
+//             alert('Не взлетело');
+//         }
+//     });
+//
+//     return false;
+// });
