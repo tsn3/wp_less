@@ -127,6 +127,7 @@ function uep_save_event_info( $post_id ) {
 	}
 }
 add_action( 'save_post', 'uep_save_event_info' );
+
 function uep_custom_columns_head( $defaults ) {
 	unset( $defaults['date'] );
 
@@ -137,3 +138,22 @@ function uep_custom_columns_head( $defaults ) {
 	return $defaults;
 }
 add_filter( 'manage_edit-event_columns', 'uep_custom_columns_head', 10 );
+
+function uep_custom_columns_content( $column_name, $post_id ) {
+
+	if ( 'event_start_date' == $column_name ) {
+		$start_date = get_post_meta( $post_id, 'event-start-date', true );
+		echo date( 'F d, Y', $start_date );
+	}
+
+	if ( 'event_end_date' == $column_name ) {
+		$end_date = get_post_meta( $post_id, 'event-end-date', true );
+		echo date( 'F d, Y', $end_date );
+	}
+
+	if ( 'event_venue' == $column_name ) {
+		$venue = get_post_meta( $post_id, 'event-venue', true );
+		echo $venue;
+	}
+}
+add_action( 'manage_event_posts_custom_column', 'uep_custom_columns_content', 10, 2 );
