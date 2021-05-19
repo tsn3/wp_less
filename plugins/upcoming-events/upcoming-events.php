@@ -157,3 +157,5 @@ function uep_custom_columns_content( $column_name, $post_id ) {
 	}
 }
 add_action( 'manage_event_posts_custom_column', 'uep_custom_columns_content', 10, 2 );
+
+include( 'inc/widget-upcoming-events.php' );
