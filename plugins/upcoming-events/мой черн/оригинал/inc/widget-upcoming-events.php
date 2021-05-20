@@ -1,7 +1,13 @@
 <?php
 
+/**
+ * Class Upcoming_Events
+ */
 class Upcoming_Events extends WP_Widget {
 
+	/**
+	 * Initializing the widget
+	 */
 	public function __construct() {
 		$widget_ops = array(
 			'class'			=>	'uep_upcoming_events',
@@ -15,6 +21,11 @@ class Upcoming_Events extends WP_Widget {
 		);
 	}
 
+
+	/**
+	 * Displaying the widget on the back-end
+	 * @param  array $instance An instance of the widget
+	 */
 	public function form( $instance ) {
 		$widget_defaults = array(
 			'title'			=>	'Upcoming Events',
@@ -23,26 +34,26 @@ class Upcoming_Events extends WP_Widget {
 
 		$instance  = wp_parse_args( (array) $instance, $widget_defaults );
 		?>
-
+		
 		<!-- Rendering the widget form in the admin -->
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>">
-				<?php _e( 'Title', 'uep' ); ?></label>
+                <?php _e( 'Title', 'uep' ); ?></label>
 			<input type="text" id="<?php echo $this->get_field_id( 'title' ); ?>"
-			       name="<?php echo $this->get_field_name( 'title' ); ?>"
-			       class="widefat" value="<?php echo esc_attr( $instance['title'] ); ?>">
+                   name="<?php echo $this->get_field_name( 'title' ); ?>"
+                   class="widefat" value="<?php echo esc_attr( $instance['title'] ); ?>">
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'number_events' ); ?>">
-				<?php _e( 'Number of events to show', 'uep' ); ?></label>
+                <?php _e( 'Number of events to show', 'uep' ); ?></label>
 			<select id="<?php echo $this->get_field_id( 'number_events' ); ?>"
-			        name="<?php echo $this->get_field_name( 'number_events' ); ?>"
-			        class="widefat">
+                    name="<?php echo $this->get_field_name( 'number_events' ); ?>"
+                    class="widefat">
 				<?php for ( $i = 1; $i <= 10; $i++ ): ?>
 					<option value="<?php echo $i; ?>"
-						<?php selected( $i, $instance['number_events'], true ); ?>>
-						<?php echo $i; ?>
-					</option>
+                        <?php selected( $i, $instance['number_events'], true ); ?>>
+                        <?php echo $i; ?>
+                    </option>
 				<?php endfor; ?>
 			</select>
 		</p>
@@ -50,6 +61,13 @@ class Upcoming_Events extends WP_Widget {
 		<?php
 	}
 
+
+	/**
+	 * Making the widget updateable
+	 * @param  array $new_instance New instance of the widget
+	 * @param  array $old_instance Old instance of the widget
+	 * @return array An updated instance of the widget
+	 */
 	public function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
 
@@ -59,6 +77,12 @@ class Upcoming_Events extends WP_Widget {
 		return $instance;
 	}
 
+
+	/**
+	 * Displaying the widget on the front-end
+	 * @param  array $args     Widget options
+	 * @param  array $instance An instance of the widget
+	 */
 	public function widget( $args, $instance ) {
 
 		extract( $args );
@@ -93,16 +117,17 @@ class Upcoming_Events extends WP_Widget {
 			echo $before_title . $title . $after_title;
 		}
 		?>
-
+		
 		<ul class="uep_event_entries">
 			<?php while( $upcoming_events->have_posts() ): $upcoming_events->the_post();
 				$event_start_date = get_post_meta( get_the_ID(), 'event-start-date', true );
-				$event_status = get_post_meta( get_the_ID(), 'event-status', true );
-				?>
+				$event_end_date = get_post_meta( get_the_ID(), 'event-end-date', true );
+				$event_venue = get_post_meta( get_the_ID(), 'event-venue', true ); 
+			?>
 				<li class="uep_event_entry">
-					<h4><a href="<?php the_permalink(); ?>" class="uep_event_title"><?php the_title(); ?></a> <span class="event_status">Status: <?php echo $event_status; ?></span></h4>
+					<h4><a href="<?php the_permalink(); ?>" class="uep_event_title"><?php the_title(); ?></a> <span class="event_venue">at <?php echo $event_venue; ?></span></h4>
 					<?php the_excerpt(); ?>
-					<time class="uep_event_date"><?php echo date( 'F d, Y', $event_start_date ); ?></time>
+					<time class="uep_event_date"><?php echo date( 'F d, Y', $event_start_date ); ?> &ndash; <?php echo date( 'F d, Y', $event_end_date ); ?></time>
 				</li>
 			<?php endwhile; ?>
 		</ul>
@@ -113,6 +138,7 @@ class Upcoming_Events extends WP_Widget {
 		wp_reset_query();
 
 		echo $after_widget;
+
 	}
 }
 
