@@ -1,9 +1,9 @@
 <?php
 /**
  * Plugin Name: Upcoming Events
- * Description: A plugin to show a list of upcoming events on the front-end.
+ * Description: A plugin to show upcoming events on the front-end.
  * Version: 1.0
- * Author: Serhii Mykolaivovich
+ * Author: Serhii Mykolaiovich
  * Author URI: http://mysite.com
  */
 
@@ -99,12 +99,11 @@ function uep_render_event_info_metabox( $post ) {
 	</p>
 	<p>
 		<label for="uep-event-status"><?php _e( 'Status:', 'uep' ); ?>
-            <select class="widefat" id="uep-event-status" required name="uep-event-status">
+            <select class="widefat" id="uep-event-status"  required name="uep-event-status">
                 <option>Open</option>
                 <option>Invitation</option>
             </select>
         </label>
-<!--		<input type="text" id="uep-event-status" name="uep-event-status" class="widefat" value="--><?php //echo $event_status; ?><!--" placeholder="eg. Times Square">-->
 	</p>
 	<?php
 }
@@ -161,15 +160,13 @@ function uep_custom_columns_content( $column_name, $post_id ) {
 }
 add_action( 'manage_event_posts_custom_column', 'uep_custom_columns_content', 10, 2 );
 
-
-
-add_filter('the_content', function($text) {
-	return '<hr> Реклама <hr>' . $text;
-});
-
-add_shortcode( 'test_text' , function($arg) {
-	return $arg['text'];
-});
-
+//
+//add_filter('the_content', function($text) {
+//	return '<hr> Реклама <hr>' . $text;
+//});
+//
+//add_shortcode( 'test_text' , function($arg) {
+//	return $arg['text'];
+//});
 
 include( 'inc/widget-upcoming-events.php' );

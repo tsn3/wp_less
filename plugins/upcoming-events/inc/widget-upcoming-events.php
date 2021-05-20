@@ -17,7 +17,7 @@ class Upcoming_Events extends WP_Widget {
 
 	public function form( $instance ) {
 		$widget_defaults = array(
-			'title'			=>	'Upcoming Events',
+			'status'			=>	'Upcoming Events',
 			'number_events'	=>	5
 		);
 
@@ -26,11 +26,11 @@ class Upcoming_Events extends WP_Widget {
 
 		<!-- Rendering the widget form in the admin -->
 		<p>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>">
-				<?php _e( 'Title', 'uep' ); ?></label>
-			<input type="text" id="<?php echo $this->get_field_id( 'title' ); ?>"
-			       name="<?php echo $this->get_field_name( 'title' ); ?>"
-			       class="widefat" value="<?php echo esc_attr( $instance['title'] ); ?>">
+			<label for="<?php echo $this->get_field_id( 'status' ); ?>">
+				<?php _e( 'Status', 'uep' ); ?></label>
+			<input type="text" id="<?php echo $this->get_field_id( 'status' ); ?>"
+			       name="<?php echo $this->get_field_name( 'status' ); ?>"
+			       class="widefat" value="<?php echo esc_attr( $instance['status'] ); ?>">
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'number_events' ); ?>">
@@ -53,7 +53,7 @@ class Upcoming_Events extends WP_Widget {
 	public function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
 
-		$instance['title'] = $new_instance['title'];
+		$instance['status'] = $new_instance['status'];
 		$instance['number_events'] = $new_instance['number_events'];
 
 		return $instance;
@@ -62,7 +62,7 @@ class Upcoming_Events extends WP_Widget {
 	public function widget( $args, $instance ) {
 
 		extract( $args );
-		$title = apply_filters( 'widget_title', $instance['title'] );
+		$status = apply_filters( 'widget_title', $instance['status'] );
 
 		//Preparing the query for events
 		$meta_quer_args = array(
@@ -89,8 +89,8 @@ class Upcoming_Events extends WP_Widget {
 
 		//Preparing to show the events
 		echo $before_widget;
-		if ( $title ) {
-			echo $before_title . $title . $after_title;
+		if ( $status ) {
+			echo $before_title . $status . $after_title;
 		}
 		?>
 
@@ -101,13 +101,10 @@ class Upcoming_Events extends WP_Widget {
 				?>
 				<li class="uep_event_entry">
 					<h4><a href="<?php the_permalink(); ?>" class="uep_event_title"><?php the_title(); ?></a> <span class="event_status">Status: <?php echo $event_status; ?></span></h4>
-					<?php the_excerpt(); ?>
 					<time class="uep_event_date"><?php echo date( 'F d, Y', $event_start_date ); ?></time>
 				</li>
 			<?php endwhile; ?>
 		</ul>
-
-		<a href="<?php echo get_post_type_archive_link( 'event' ); ?>">View All Events</a>
 
 		<?php
 		wp_reset_query();
