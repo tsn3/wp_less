@@ -14,7 +14,7 @@ define( 'SCRIPTS', ROOT . '/js/' );
 
 function uep_custom_post_type() {
 	$labels = array(
-		'name'                  =>   __( 'Events2', 'uep' ),
+		'name'                  =>   __( 'Events', 'uep' ),
 		'singular_name'         =>   __( 'Event', 'uep' ),
 		'add_new_item'          =>   __( 'Add New Event', 'uep' ),
 		'all_items'             =>   __( 'All Events', 'uep' ),
@@ -32,7 +32,7 @@ function uep_custom_post_type() {
 	);
 
 	$args = array(
-		'label'         =>   __( 'Events2', 'uep' ),
+		'label'         =>   __( 'Events', 'uep' ),
 		'labels'        =>   $labels,
 		'description'   =>   __( 'A list of upcoming events', 'uep' ),
 		'public'        =>   true,
@@ -60,10 +60,6 @@ function uep_add_event_info_metabox() {
 add_action( 'add_meta_boxes', 'uep_add_event_info_metabox' );
 
 
-/**
- * Rendering the metabox for event information
- * @param  object $post The post object
- */
 function uep_render_event_info_metabox( $post ) {
 	//generate a nonce field
 	wp_nonce_field( basename( __FILE__ ), 'uep-event-info-nonce' );
@@ -84,13 +80,18 @@ function uep_render_event_info_metabox( $post ) {
 		<label for="uep-event-start-date"><?php _e( 'Event Start Date:', 'uep' ); ?></label>
 		<input type="text" id="uep-event-start-date" name="uep-event-start-date" class="widefat uep-event-date-input" value="<?php echo date( 'F d, Y', $event_start_date ); ?>" placeholder="Format: February 18, 2014">
 	</p>
+<!--	<p>-->
+<!--		<label for="uep-event-end-date">--><?php //_e( 'Event End Date:', 'uep' ); ?><!--</label>-->
+<!--		<input type="text" id="uep-event-end-date" name="uep-event-end-date" class="widefat uep-event-date-input" value="--><?php //echo date( 'F d, Y', $event_end_date ); ?><!--" placeholder="Format: February 18, 2014">-->
+<!--	</p>-->
 	<p>
-		<label for="uep-event-end-date"><?php _e( 'Event End Date:', 'uep' ); ?></label>
-		<input type="text" id="uep-event-end-date" name="uep-event-end-date" class="widefat uep-event-date-input" value="<?php echo date( 'F d, Y', $event_end_date ); ?>" placeholder="Format: February 18, 2014">
-	</p>
-	<p>
-		<label for="uep-event-venue"><?php _e( 'Event Venue:', 'uep' ); ?></label>
-		<input type="text" id="uep-event-venue" name="uep-event-venue" class="widefat" value="<?php echo $event_venue; ?>" placeholder="eg. Times Square">
+		<label for="uep-event-venue"><?php _e( 'Status:', 'uep' ); ?>
+            <select class="widefat" id="uep-event-venue" required name="uep-event-venue">
+                <option>Open</option>
+                <option>Invitation</option>
+            </select>
+        </label>
+<!--		<input type="text" id="uep-event-venue" name="uep-event-venue" class="widefat" value="--><?php //echo $event_venue; ?><!--" placeholder="eg. Times Square">-->
 	</p>
 	<?php
 }
