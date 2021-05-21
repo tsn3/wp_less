@@ -67,11 +67,28 @@ class Upcoming_Events extends WP_Widget {
 		//Preparing the query for events
 		$meta_quer_args = array(
 			'relation'	=>	'AND',
+//			array(
+//				'key'		=>	'event-start-date',
+//				'value'		=>	time(),
+//				'compare'	=>	'>='
+//			),
+//			array(
+//				'key'   => 'events-status',
+//				'value' => $status
+//			),
 			array(
-				'key'		=>	'event-end-date',
-				'value'		=>	time(),
-				'compare'	=>	'>='
-			)
+				'relation' => 'AND',
+				array(
+					'key'		=>	'event-start-date',
+					'value'		=>	time(),
+					'compare'	=>	'>='
+				),
+				array(
+					'key'   => 'event-status',
+					'value' => $status ?? 'open',
+				),
+			),
+
 		);
 
 		$query_args = array(

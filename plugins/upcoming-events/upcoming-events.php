@@ -136,6 +136,44 @@ function uep_save_event_info( $post_id ) {
 }
 add_action( 'save_post', 'uep_save_event_info' );
 
+function uep_admin_script_style( $hook ) {
+	global $post_type;
+
+	if ( ( 'post.php' == $hook || 'post-new.php' == $hook ) && ( 'event' == $post_type ) ) {
+		wp_enqueue_script(
+			'upcoming-events',
+			SCRIPTS . 'script.js',
+			array( 'jquery', 'jquery-ui-datepicker' ),
+			'1.0',
+			true
+		);
+
+		wp_enqueue_style(
+			'jquery-ui-calendar',
+			STYLES . 'jquery-ui-1.10.4.custom.min.css',
+			false,
+			'1.10.4',
+			'all'
+		);
+	}
+}
+add_action( 'admin_enqueue_scripts', 'uep_admin_script_style' );
+
+/**
+ * Enqueueing styles for the front-end widget
+ */
+function uep_widget_style() {
+	if ( is_active_widget( '', '', 'uep_upcoming_events', true ) ) {
+		wp_enqueue_style(
+			'upcoming-events',
+			STYLES . 'upcoming-events.css',
+			false,
+			'1.0',
+			'all'
+		);
+	}
+}
+
 function uep_custom_columns_head( $defaults ) {
 	unset( $defaults['date'] );
 
