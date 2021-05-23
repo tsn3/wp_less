@@ -1,9 +1,9 @@
 <?php
 /**
  * Plugin Name: Upcoming Events
- * Description: A plugin to show upcoming events on the front-end.
+ * Description: A plugin to show a list of upcoming events on the front-end.
  * Version: 1.0
- * Author: Serhii Mykolaiovich
+ * Author: Serhii Mykolaivovich
  * Author URI: http://mysite.com
  */
 
@@ -94,12 +94,12 @@ function uep_render_event_info_metabox( $post ) {
 
 	?>
 	<p>
-		<label for="uep-event-start-date"><?php _e( 'Event Start Date:', 'uep' ); ?></label>
+		<label for="uep-event-start-date"><?php _e( 'Event Date:', 'uep' ); ?></label>
 		<input type="text" id="uep-event-start-date" name="uep-event-start-date" class="widefat uep-event-date-input" value="<?php echo date( 'F d, Y', $event_start_date ); ?>" placeholder="Format: February 18, 2014">
 	</p>
 	<p>
 		<label for="uep-event-status"><?php _e( 'Status:', 'uep' ); ?>
-            <select class="widefat" id="uep-event-status"  required name="uep-event-status">
+            <select class="widefat" id="uep-event-status" required name="uep-event-status">
                 <option>Open</option>
                 <option>Invitation</option>
             </select>
@@ -136,44 +136,6 @@ function uep_save_event_info( $post_id ) {
 }
 add_action( 'save_post', 'uep_save_event_info' );
 
-function uep_admin_script_style( $hook ) {
-	global $post_type;
-
-	if ( ( 'post.php' == $hook || 'post-new.php' == $hook ) && ( 'event' == $post_type ) ) {
-		wp_enqueue_script(
-			'upcoming-events',
-			SCRIPTS . 'script.js',
-			array( 'jquery', 'jquery-ui-datepicker' ),
-			'1.0',
-			true
-		);
-
-		wp_enqueue_style(
-			'jquery-ui-calendar',
-			STYLES . 'jquery-ui-1.10.4.custom.min.css',
-			false,
-			'1.10.4',
-			'all'
-		);
-	}
-}
-add_action( 'admin_enqueue_scripts', 'uep_admin_script_style' );
-
-/**
- * Enqueueing styles for the front-end widget
- */
-function uep_widget_style() {
-	if ( is_active_widget( '', '', 'uep_upcoming_events', true ) ) {
-		wp_enqueue_style(
-			'upcoming-events',
-			STYLES . 'upcoming-events.css',
-			false,
-			'1.0',
-			'all'
-		);
-	}
-}
-
 function uep_custom_columns_head( $defaults ) {
 	unset( $defaults['date'] );
 
@@ -198,13 +160,37 @@ function uep_custom_columns_content( $column_name, $post_id ) {
 }
 add_action( 'manage_event_posts_custom_column', 'uep_custom_columns_content', 10, 2 );
 
-//
-//add_filter('the_content', function($text) {
-//	return '<hr> Реклама <hr>' . $text;
-//});
-//
-//add_shortcode( 'test_text' , function($arg) {
-//	return $arg['text'];
-//});
+function uep_create_shortcode_events_post_type(){
+
+	$args = array(
+		'post_type'      => 'event',
+		'posts_per_page' => '3',
+		"status" => 'open',
+		'publish_status' => 'published',
+	);
+
+	$query = new WP_Query($args);
+
+	if($query->have_posts()) :
+
+		while($query->have_posts()) :
+
+			$query->the_post() ;
+
+			$result .= '<div class="uep_event_entry">';
+			$result .= '<div class="uep_event_status">' . get_the_title() . '</div>';
+			$result .= '<div class="uep_event_date">'; echo get_the_date('j F Y', get_the_ID()); '</div>';
+			$result .= '</div>';
+
+		endwhile;
+
+		wp_reset_postdata();
+
+	endif;
+
+	return $result;
+}
+
+add_shortcode( 'events-list', 'uep_create_shortcode_events_post_type' );
 
 include( 'inc/widget-upcoming-events.php' );

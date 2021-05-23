@@ -17,24 +17,25 @@ class Upcoming_Events extends WP_Widget {
 
 	public function form( $instance ) {
 		$widget_defaults = array(
-			'status'			=>	'Upcoming Events',
-			'number_events'	=>	5
+			'status'			=>	'Open',
+			'number_events'	=>	3
 		);
 
 		$instance  = wp_parse_args( (array) $instance, $widget_defaults );
 		?>
 
 		<!-- Rendering the widget form in the admin -->
-		<p>
-			<label for="<?php echo $this->get_field_id( 'status' ); ?>">
+        <p>
+            <label for="<?php echo $this->get_field_id( 'status' ); ?>">
 				<?php _e( 'Status', 'uep' ); ?></label>
-			<input type="text" id="<?php echo $this->get_field_id( 'status' ); ?>"
-			       name="<?php echo $this->get_field_name( 'status' ); ?>"
-			       class="widefat" value="<?php echo esc_attr( $instance['status'] ); ?>">
-		</p>
+            <input type="text" id="<?php echo $this->get_field_id( 'status' ); ?>"
+                   name="<?php echo $this->get_field_name( 'status' ); ?>"
+                   class="widefat" value="<?php echo esc_attr( $instance['status'] ); ?>">
+        </p>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'number_events' ); ?>">
-				<?php _e( 'Number of events to show', 'uep' ); ?></label>
+				<?php _e( 'Number of events to show', 'uep' ); ?>
+            </label>
 			<select id="<?php echo $this->get_field_id( 'number_events' ); ?>"
 			        name="<?php echo $this->get_field_name( 'number_events' ); ?>"
 			        class="widefat">
@@ -62,32 +63,23 @@ class Upcoming_Events extends WP_Widget {
 	public function widget( $args, $instance ) {
 
 		extract( $args );
-		$status = apply_filters( 'widget_title', $instance['status'] );
+		$title = apply_filters( 'widget_title', $instance['status'] );
 
 		//Preparing the query for events
 		$meta_quer_args = array(
 			'relation'	=>	'AND',
-//			array(
-//				'key'		=>	'event-start-date',
-//				'value'		=>	time(),
-//				'compare'	=>	'>='
-//			),
-//			array(
-//				'key'   => 'events-status',
-//				'value' => $status
-//			),
 			array(
 				'relation' => 'AND',
 				array(
 					'key'		=>	'event-start-date',
 					'value'		=>	time(),
-					'compare'	=>	'>='
+					'compare'	=>	'>=',
 				),
 				array(
 					'key'   => 'event-status',
 					'value' => $status ?? 'open',
 				),
-			),
+			)
 
 		);
 
@@ -106,8 +98,8 @@ class Upcoming_Events extends WP_Widget {
 
 		//Preparing to show the events
 		echo $before_widget;
-		if ( $status ) {
-			echo $before_title . $status . $after_title;
+		if ( $title ) {
+			echo $before_title . $title .' event'. $after_title;
 		}
 		?>
 
@@ -117,12 +109,17 @@ class Upcoming_Events extends WP_Widget {
 				$event_status = get_post_meta( get_the_ID(), 'event-status', true );
 				?>
 				<li class="uep_event_entry">
-					<h4><a href="<?php the_permalink(); ?>" class="uep_event_title"><?php the_title(); ?></a> <span class="event_status">Status: <?php echo $event_status; ?></span></h4>
+					<h4><a href="<?php the_permalink(); ?>" class="uep_event_status">
+                            <?php the_title(); ?>
+                        </a>
+                        <span class="event_status">Status: <?php echo $event_status; ?>
+                        </span>
+                    </h4>
 					<time class="uep_event_date"><?php echo date( 'F d, Y', $event_start_date ); ?></time>
 				</li>
 			<?php endwhile; ?>
 		</ul>
-
+        
 		<?php
 		wp_reset_query();
 
