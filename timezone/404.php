@@ -15,7 +15,7 @@ get_header();
             <div class="error-404 not-found">
                 <header class="page-header">
                     <h1>404.php</h1>
-                    <h1 class="page-title"><?php _e( 'Ой! Страница не найдена.', 'tsn' ); ?></h1>
+                    <h1 class="page-title"><?php esc_html_e( 'Ой! Страница не найдена.', 'tsn' ); ?></h1>
                 </header><!-- .page-header -->
 
             </div><!-- .error-404 -->

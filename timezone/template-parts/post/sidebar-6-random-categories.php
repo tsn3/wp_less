@@ -1,5 +1,5 @@
 <aside class="single_sidebar_widget post_category_widget">
-	<h4 class="widget_title"><?php _e('Cлучайные 6 категорий блога', 'tsn');  ?></h4>
+	<h4 class="widget_title"><?php esc_html_e('Cлучайные 6 категорий блога', 'tsn');  ?></h4>
 	<ul class="list cat-list">
 		<?php
 		// display 6 random categories

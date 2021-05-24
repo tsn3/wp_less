@@ -32,7 +32,7 @@
 		                        <?php the_posts_pagination(); ?>
 
 	                        <?php else : ?>
-                                <hr><?php _e('Ничего не найдено.', 'tsn')?><hr>
+                                <hr><?php esc_html_e('Ничего не найдено.', 'tsn')?><hr>
 	                        <?php endif; ?>
                             <!-- конец if -->
                         </div>

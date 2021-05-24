@@ -7,22 +7,22 @@
 				<div class="col-xl-4 col-lg-4 col-md-6">
 					<div class="single-method mb-40">
 						<i class="ti-package"></i>
-						<h6><?php _e('Бесплатная доставка', 'tsn')?></h6>
-						<p><?php _e('Передать дополнительный контекст в шаблоны полей.', 'tsn')?></p>
+						<h6><?php esc_html_e('Бесплатная доставка', 'tsn')?></h6>
+						<p><?php esc_html_e('Передать дополнительный контекст в шаблоны полей.', 'tsn')?></p>
 					</div>
 				</div>
 				<div class="col-xl-4 col-lg-4 col-md-6">
 					<div class="single-method mb-40">
 						<i class="ti-unlock"></i>
-						<h6><?php _e('Безопасная платежная система', 'tsn')?></h6>
-						<p><?php _e('Передать дополнительный контекст в шаблоны полей.', 'tsn')?></p>
+						<h6><?php esc_html_e('Безопасная платежная система', 'tsn')?></h6>
+						<p><?php esc_html_e('Передать дополнительный контекст в шаблоны полей.', 'tsn')?></p>
 					</div>
 				</div>
 				<div class="col-xl-4 col-lg-4 col-md-6">
 					<div class="single-method mb-40">
 						<i class="ti-reload"></i>
-						<h6><?php _e('Безопасная платежная система', 'tsn')?></h6>
-						<p><?php _e('Передать дополнительный контекст в шаблоны полей.', 'tsn')?></p>
+						<h6><?php esc_html_e('Безопасная платежная система', 'tsn')?></h6>
+						<p><?php esc_html_e('Передать дополнительный контекст в шаблоны полей.', 'tsn')?></p>
 					</div>
 				</div>
 			</div>

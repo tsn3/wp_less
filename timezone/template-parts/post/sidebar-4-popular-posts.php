@@ -8,7 +8,7 @@ $popular_posts_args = array(
 
 $popular_posts_loop = new WP_Query( $popular_posts_args );?>
 <aside class="single_sidebar_widget popular_post_widget">
-	<h3 class="widget_title"><?php _e('Популярные статьи', 'tsn');  ?></h3>
+	<h3 class="widget_title"><?php esc_html_e('Популярные статьи', 'tsn');  ?></h3>
 
 	<div class="media post_item">
 		<?php while( $popular_posts_loop->have_posts() ):

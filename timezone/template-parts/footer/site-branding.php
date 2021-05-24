@@ -26,7 +26,7 @@
     </div>
     <div class="footer-tittle">
         <div class="footer-pera">
-            <p><?php _e('Место для статического слогана', 'tsn');?></p>
+            <p><?php esc_html_e('Место для статического слогана', 'tsn');?></p>
         </div>
     </div>
 </div>

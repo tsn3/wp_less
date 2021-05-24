@@ -13,7 +13,7 @@ $popular = new WP_Query ('post_type=(post)&posts_per_page=3&orderby=rand');
 							<?php
 						} ?>
 						<div class="img-cap">
-							<a href="<?php the_permalink(); ?>"><?php _e('Подробнее', 'tsn'); ?></a>
+							<a href="<?php the_permalink(); ?>"><?php esc_html_e('Подробнее', 'tsn'); ?></a>
 						</div>
 					</div>
 					<div class="popular-caption">

@@ -21,7 +21,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <h2 class="contact-title"><?php _e('Связаться', 'tsn'); ?></h2>
+                        <h2 class="contact-title"><?php esc_html_e('Связаться', 'tsn'); ?></h2>
+                        <h2 class="contact-title"><?php echo do_shortcode("[events-list]"); ?></h2>
                     </div>
                     <div class="col-lg-8">
                         <form class="form-contact contact_form" action="<?php bloginfo('template_url'); ?>/contact_process.php" method="post" id="contactForm" novalidate="novalidate">
@@ -29,34 +30,34 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <textarea class="form-control w-100" name="message" id="message" cols="30"
-                                                  rows="9" onfocus="this.placeholder = ''" onblur="this.placeholder = '<?php _e('Введите сообщение', 'tsn');?>'"
-                                                  placeholder="<?php _e('Введите сообщение', 'tsn');?>"></textarea>
+                                                  rows="9" onfocus="this.placeholder = ''" onblur="this.placeholder = '<?php esc_html_e('Введите сообщение', 'tsn');?>'"
+                                                  placeholder="<?php esc_html_e('Введите сообщение', 'tsn');?>"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <input class="form-control valid" name="name" id="name" type="text"
-                                               onfocus="this.placeholder = ''" onblur="this.placeholder = '<?php _e('Введите имя', 'tsn');?>'"
-                                               placeholder="<?php _e('Введите имя', 'tsn');?>">
+                                               onfocus="this.placeholder = ''" onblur="this.placeholder = '<?php esc_html_e('Введите имя', 'tsn');?>'"
+                                               placeholder="<?php esc_html_e('Введите имя', 'tsn');?>">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <input class="form-control valid" name="email" id="email" type="email"
-                                               onfocus="this.placeholder = ''" onblur="this.placeholder = '<?php _e('Введите адрес электронной почты', 'tsn');?>'"
-                                               placeholder="<?php _e('Электронная почта', 'tsn');?>">
+                                               onfocus="this.placeholder = ''" onblur="this.placeholder = '<?php esc_html_e('Введите адрес электронной почты', 'tsn');?>'"
+                                               placeholder="<?php esc_html_e('Электронная почта', 'tsn');?>">
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
                                         <input class="form-control" name="subject" id="subject" type="text"
-                                               onfocus="this.placeholder = ''" onblur="this.placeholder = '<?php _e('Введите тему', 'tsn');?>'"
-                                               placeholder="<?php _e('Введите тему', 'tsn');?>">
+                                               onfocus="this.placeholder = ''" onblur="this.placeholder = '<?php esc_html_e('Введите тему', 'tsn');?>'"
+                                               placeholder="<?php esc_html_e('Введите тему', 'tsn');?>">
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group mt-3">
-                                <button type="submit" class="button button-contactForm boxed-btn"><?php _e('Отправить', 'tsn'); ?></button>
+                                <button type="submit" class="button button-contactForm boxed-btn"><?php esc_html_e('Отправить', 'tsn'); ?></button>
                             </div>
                         </form>
                     </div>

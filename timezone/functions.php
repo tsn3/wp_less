@@ -20,16 +20,16 @@ add_action( 'after_setup_theme', function() {
 	) );
 
     register_nav_menus(array(
-            'primary-menu' => __('Главное меню', 'tsn'),
-            'footer-menu' => __('Подвальное меню', 'tsn'),
-            'mobile-menu' => __('Мобильное меню', 'tsn'),
+            'primary-menu' => esc_html__('Главное меню', 'tsn'),
+            'footer-menu' => esc_html__('Подвальное меню', 'tsn'),
+            'mobile-menu' => esc_html__('Мобильное меню', 'tsn'),
         )
     );
 
 	add_filter( 'excerpt_more', 'new_excerpt_more' );
 	function new_excerpt_more( $more ){
 		global $post;
-		return '<a href="'. get_permalink($post) . '">'._e('Читать далее','tsn').'</a>';
+		return '<a href="'. get_permalink($post) . '">'.esc_html_e('Читать далее','tsn').'</a>';
 	}
 	// удаляет H2 из шаблона пагинации
 	add_filter('navigation_markup_template', 'my_navigation_template', 10, 2 );
@@ -56,7 +56,7 @@ function register_my_widgets()
     register_sidebar( array(
         'name'          => 'Right Sidebar',
         'id'            => "right_sidebar",
-        'description'   => __('Описание нашего сайдбара', 'tsn'),
+        'description'   => esc_html__('Описание нашего сайдбара', 'tsn'),
         'before_widget' => '<div class="widget %2$s">',
         'after_widget'  => "</div>\n",
         'before_title'  => '<h5 class="widgettitle">',
@@ -96,17 +96,17 @@ add_action('block_meta', 'my_get_date');
 add_action('block_meta', function() {
 	echo '<li><a href="#">';
 	do_action('get_views');
-	echo _e(' Просмотров', 'tsn');'<i class="lnr lnr-eye"></i></a></li>';
+	echo esc_html_e(' Просмотров', 'tsn');'<i class="lnr lnr-eye"></i></a></li>';
 });
 
 add_action('block_meta', function() {
 	$num_comments = get_comments_number();
 	if ( $num_comments == 0 ) {
-		$comments = __('No Comments');
+		$comments = esc_html__('No Comments');
 	} elseif ( $num_comments > 1 ) {
-		$comments = $num_comments . __(' Comments');
+		$comments = $num_comments . esc_html__(' Comments');
 	} else {
-		$comments = __('1 Comment');
+		$comments = esc_html__('1 Comment');
 	}
 
 	if (is_user_logged_in()) {
@@ -132,8 +132,8 @@ add_action( 'wp_ajax_nopriv_contact', 'magicAjax' );
 //add_action( 'wp_ajax_{action}', 'magicAjax' );
 
 function magicAjax() {
-	$status = wp_mail(get_option('admin_email'), __('Контакты'), print_r($_POST, 1));
-//    $status = wp_mail('tsn3ps@gmail.com', __('Контакты'), print_r($_POST, 1));
+	$status = wp_mail(get_option('admin_email'), esc_html__('Контакты'), print_r($_POST, 1));
+//    $status = wp_mail('tsn3ps@gmail.com', esc_html__('Контакты'), print_r($_POST, 1));
 
 	wp_send_json(array('status' => $status));
 }
@@ -153,7 +153,7 @@ function magicAjax2() {
 			<?php get_template_part('template-parts/content/post', get_post_type());?>
 		<?php endwhile; ?>
 	<?php else : ?>
-        <hr><?php _e('Ничего не найдено.', 'tsn')?><hr>
+        <hr><?php esc_html_e('Ничего не найдено.', 'tsn')?><hr>
 	<?php endif; ?>
 
 	<?php wp_reset_postdata(); ?>

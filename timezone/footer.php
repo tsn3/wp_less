@@ -21,9 +21,9 @@
             <div class="row align-items-center">
                 <div class="col-xl-7 col-lg-8 col-md-7">
                     <div class="footer-copy-right">
-                        <p><?php _e('Авторские права', 'tsn');?>
+                        <p><?php esc_html_e('Авторские права', 'tsn');?>
                              &copy;<script>document.write(new Date().getFullYear());</script>
-                            <?php _e('Все права защищены | Этот шаблон сделан с ', 'tsn');?>
+                            <?php esc_html_e('Все права защищены | Этот шаблон сделан с ', 'tsn');?>
                             <i class="fa fa-heart" aria-hidden="true"></i><a href="#" target="_blank">TSN</a>
                         </p>
                     </div>

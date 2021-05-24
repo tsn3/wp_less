@@ -16,7 +16,7 @@
                                 <p data-animation="fadeInLeft" data-delay=".8s" data-duration="20ms"><?php echo $slide['content'];?></p>
                                 <!-- Hero-btn -->
                                 <div class="hero__btn" data-animation="fadeInLeft" data-delay=".8s" data-duration="30ms">
-                                    <span class="btn hero-btn"><?php _e('Влево/вправо', 'tsn'); ?></span>
+                                    <span class="btn hero-btn"><?php esc_html_e('Влево/вправо', 'tsn'); ?></span>
                                 </div>
                             </div>
                         </div>

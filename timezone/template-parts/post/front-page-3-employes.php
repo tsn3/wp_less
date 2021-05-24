@@ -9,7 +9,7 @@ $employes = new WP_Query ('post_type=employee&posts_per_page=3&orderby=rand');
 			<div class="row">
 				<div class="col-xl-12">
 					<div class="section-tittle mb-70">
-						<h2><?php _e('Наши сотрудники', 'tsn');?></h2>
+						<h2><?php esc_html_e('Наши сотрудники', 'tsn');?></h2>
 					</div>
 				</div>
 			</div>
